@@ -232,51 +232,6 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>760</x>
-      <y>350</y>
-      <w>180</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>lt=.&gt;
-&lt;&lt;includes&gt;&gt;</panel_attributes>
-    <additional_attributes>160.0;80.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>490</x>
-      <y>440</y>
-      <w>460</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>lt=.&gt;
-&lt;&lt;includes&gt;&gt;</panel_attributes>
-    <additional_attributes>440.0;10.0;10.0;60.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>450</x>
-      <y>630</y>
-      <w>620</w>
-      <h>180</h>
-    </coordinates>
-    <panel_attributes>Μη λειτουργικες απαιτησεις
--
--Μόνο ο διαχειριστής μπορεί να εχει πρόσβαση στην
-πλατφορμα του API
--Για την τελική απόφαση το συστημα χρειάζεται μεχρι και 
-5 εργάσιμες
--Τα στοιχεία του φιλόζωου και της φιλοζωικής
-πρέπει να προστατεύονται
--Ο φιλοζωος θα πρεπει να μπορει να 
-κάνει αναζητηση βαση των queries
--</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
       <x>250</x>
       <y>50</y>
       <w>130</w>
