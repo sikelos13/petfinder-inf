@@ -1,7 +1,7 @@
 /**
  * 
  */
-package petfinder.main;
+package petfinder.domain;
 
 /**
  * @author spyros
