@@ -1,4 +1,4 @@
-package petfinder.main;
+package petfinder.domain;
 
 public class User {
 	
