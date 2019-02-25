@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
@@ -33,7 +31,7 @@ public class ApplicationService  {
 
 
 	public ApplicationService(String Breed, String Location, String Name) {
-		super(Breed, Location, Name);
+//		super(Breed, Location, Name);
 		// TODO Auto-generated constructor stub
 	}
 
