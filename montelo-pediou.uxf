@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.3.0">
+<diagram program="umlet" version="14.2.0">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
@@ -100,6 +100,8 @@ JobTitle: String
     <panel_attributes>Applicant
 --
 HouseArea: Float
+
+Email: EmailAddress
 
 Country: String
 
@@ -255,7 +257,7 @@ Includes</panel_attributes>
     <coordinates>
       <x>130</x>
       <y>470</y>
-      <w>840</w>
+      <w>830</w>
       <h>280</h>
     </coordinates>
     <panel_attributes>lt=-

@@ -1,7 +1,7 @@
 package service;
+import
 
-
-public class PetInformationManagement {
+public class PetInformationService {
 	private Float petWeight, petHeight;
 	private String petName, petBreed, petExtraInformation;
 	
