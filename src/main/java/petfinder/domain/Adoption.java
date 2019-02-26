@@ -23,6 +23,20 @@ public class Adoption {
 		Details = details;
 	}
 	
+	public Date getAdoptionDate() {
+		return adoptionDate;
+	}
 	
+	public String getDetails() {
+		return Details;
+	}
+	
+	public void setAdoptionDate(Date adDate) {
+		adoptionDate = adDate;
+	}
+	
+	public void setDetails(String details) {
+		Details = details;
+	}
 
 }
