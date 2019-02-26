@@ -17,7 +17,7 @@ public class Ad {
 	public Ad(Pet pet, String details) {
 		Animal = pet;
 		Details = details;
-		createID();
+		createID(); 
 	}
 	
 	public Pet getPet() {
