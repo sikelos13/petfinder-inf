@@ -3,6 +3,9 @@
  */
 package petfinder.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * @author spyros
  *
