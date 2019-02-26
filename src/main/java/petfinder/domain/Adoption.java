@@ -22,5 +22,7 @@ public class Adoption {
 		adoptionDate = adDate;
 		Details = details;
 	}
+	
+	
 
 }

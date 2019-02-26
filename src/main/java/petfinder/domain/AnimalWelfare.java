@@ -7,6 +7,9 @@ package petfinder.domain;
  * @author spyros
  *
  */
+
+@Entity
+@Table(name = "AnimalWelfare")
 public class AnimalWelfare extends User {
 
 	/**
