@@ -2,7 +2,7 @@ package petfinder.domain;
 
 public class Applicant {
 	
-	private String Country, City, Region, Address;
+	private String Country, City, Region, Address, Email;
 	
 	private Float HouseArea, PetBudgetPerWeek;
 	
@@ -31,6 +31,14 @@ public class Applicant {
 	
 	public void setCountry(String Country) {
 		this.Country = Country;
+	}
+	
+	public String getEmail() {
+		return Email;
+	}
+	
+	public void setEmail(String Email) {
+		this.Email = Email;
 	}
 	
 	public void setCity(String City) {
