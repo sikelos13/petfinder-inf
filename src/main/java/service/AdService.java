@@ -8,14 +8,14 @@ import javax.persistence.NoResultException;
 import petfinder.domain.User;
 import petfinder.domain.Breed;
 
-public class AddAdService  {
+public class AdService  {
 	private static final List<Breed> Breed = null;
 
 	private String Details;
 	
 	private EntityManager pet;
 
-	public AddAdService(EntityManager pet) {
+	public AdService(EntityManager pet) {
 		this.pet = pet;
 	}
 	
@@ -34,7 +34,7 @@ public class AddAdService  {
 	}
 
 
-	public AddAdService(String Breed, String Location, String Name) {
+	public AdService(String Breed, String Location, String Name) {
 //		super(Breed, Location, Name);
 		// TODO Auto-generated constructor stub
 	}
