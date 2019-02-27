@@ -29,6 +29,12 @@ public class AdList {
 
     }
 
+
+	public boolean isRejected() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
     
 //    public void setBreedName(String BreedName) {
 //        this.BreedName = BreedName;

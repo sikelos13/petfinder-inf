@@ -2,28 +2,30 @@ package petfinder.domain;
 
 public class Applicant {
 	
-	private String Country, City, Region, Address, Email;
+	private String Country, City, Region, Address;
 	
 	private Float HouseArea, PetBudgetPerWeek;
 	
-	private Integer AvailableHoursPerDay;
+	private Integer AvailableHoursPerDay, Tel;
 	
 	
 	public Applicant() {
-		this("", "", "", "", null,null,null);
+		this("", "", "", "",null, null,null,null);
 	}
 	
-	public Applicant(String Country, String City, String Region, String Address,
+	public Applicant(String Country, String City, String Region, String Address, Integer Tel,
 			Float HouseArea, Float PetBudgetPerWeek, Integer AvailableHoursPerDay) {
 		this.Country = Country;
 		this.City = City;
 		this.Region = Region;
+		this.Tel = Tel;
 		this.Address = Address;
 		this.HouseArea = HouseArea;
 		this.PetBudgetPerWeek = PetBudgetPerWeek;
 		this.AvailableHoursPerDay = AvailableHoursPerDay;
 
 	}
+
 	
 	public String getCountry() {
 		return Country;
@@ -33,12 +35,17 @@ public class Applicant {
 		this.Country = Country;
 	}
 	
-	public String getEmail() {
-		return Email;
+	public Integer getTel() {
+		return Tel;
 	}
 	
-	public void setEmail(String Email) {
-		this.Email = Email;
+	public boolean isValid() {
+        return true;
+    }
+
+	
+	public void setTel(Integer Tel) {
+		this.Tel = Tel;
 	}
 	
 	public void setCity(String City) {

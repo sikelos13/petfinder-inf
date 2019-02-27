@@ -9,16 +9,12 @@ import javax.persistence.EntityTransaction;
 
 
 public class NotificationService {
-    private String provider;
-    
-    
-    /**
-     * Θέτει τον πάροχο του ηλεκτρονικού ταχυδρομείου.
-     * @param provider Ο πάροχος ηλεκτρονικού ταχυδρομείου.
-     */
-    public void setProvider(String provider) {
-        this.provider = provider;
-    }
+//    private String provider;
+//    
+//    
+//    public void setProvider(String provider) {
+//        this.employee = employee;
+//    }
 
     /**
      * Ενημερώνει όσους.
@@ -26,23 +22,23 @@ public class NotificationService {
      */
     @SuppressWarnings("unchecked")
 	public void notifyApplicants() {
-        if (provider == null) {
-//            throw new LibraryException();
-        }
+//        if (provider == null) {
+////            throw new LibraryException();
+//        }
 
-        EntityManager em  = JPAUtil.createEntityManager();
+//        EntityManager em  = JPAUtil.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         
-        List<AdList> allAds = em.createQuery("select a from AdList a where a.hasBeenAdopted is false")
+        List<Adoption> allApplications = em.createQuery("select a from Application List a where a.approvedAd is false")
         	.getResultList();
         
-        for (AdList ad : allAds) {
-            if (ad.isRejected() && ad.getApplicant().getEmail()!=null &&
-            		ad.getApplicant().getEmail().isValid()) {
+        for (Adoption ad : allApplications) {
+            if (ad.isRejected() && Applicant.getApprovement()!=null &&
+            		ad.getApprovement().getTel().isValid()) {
                 String message = composeMessage(ad.getPet(),
                         -ad.reasonForRejection());
-                sendEmail(ad.getApplicant(),
+                sentText(ad.getApprovement(),
                         "Το αίτημα δεν εγκρίθηκε", message);
             }
         }
@@ -50,20 +46,21 @@ public class NotificationService {
         tx.commit();
         em.close();
     }
+    
+	
 
-
-    private void sendEmail(Applicant applicant,
+    private void sentText(Applicant applicant,
             String subject, String message) {
-        EmailAddress eMail  = applicant.getEmail();
-        if (eMail == null || !eMail.isValid()) {
+        Integer phone  = applicant.getTel();
+        if (phone == null || !phone.isValid()) {
             return;
         }
         
-        EmailMessage emailMessage = new EmailMessage();
-        emailMessage.setTo(eMail);
-        emailMessage.setSubject(subject);
-        emailMessage.setBody(message);
-        provider.sendEmail(emailMessage);
+        String textMessage = new textMessage();
+        textMessage.setTo(eMail);
+        textMessage.setSubject(subject);
+        textMessage.setBody(message);
+        Employee.sendText(textMessage);
     }
 
     private String composeMessage(Ad ad) {
