@@ -44,7 +44,7 @@ public class AdoptionService {
 		return em.find(Ad.class, id);
 	}
 
-	public boolean serverOnUpdateBreed(Breed b) {
+	public boolean serverOnUpdateApplication(Breed b) {
 
 		if (b != null) {
 			em.merge(b);
@@ -59,7 +59,7 @@ public class AdoptionService {
 	 * @param b
 	 * @return
 	 */
-	public boolean createApplication(Borrower b) {
+	public boolean createApplication(Ad b) {
 
 		if (b != null) {
 			em.persist(b);
@@ -69,7 +69,7 @@ public class AdoptionService {
 		return false;
 	}
 	
-	public boolean deleteBorrower(Borrower b) {
+	public boolean deleteApplication(Ad b) {
 
 		if (b != null) {
 			em.remove(b);
@@ -79,10 +79,10 @@ public class AdoptionService {
 		return false;
 	}
 
-	public List<Borrower> findAllBorrowers() {
-		List<Borrower> results = null;
+	public List<AdList> findAllAds() {
+		List<AdList> results = null;
 
-		results = em.createQuery("select b from Borrower b", Borrower.class)
+		results = em.createQuery("select a from AdList a", AdList.class)
 				.getResultList();
 
 		return results;

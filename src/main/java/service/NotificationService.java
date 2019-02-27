@@ -4,25 +4,19 @@ import java.util.List;
 import petfinder.domain.*;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
-
-//import com.mgiandia.library.LibraryException;
-//import com.mgiandia.library.contacts.EmailAddress;
-//import com.mgiandia.library.contacts.EmailMessage;
-//import com.mgiandia.library.domain.Book;
-//import com.mgiandia.library.domain.Borrower;
-//import com.mgiandia.library.domain.Loan;
-//import com.mgiandia.library.persistence.JPAUtil;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 
 
 public class NotificationService {
-    private EmailProvider provider;
+    private String provider;
     
     
     /**
      * Θέτει τον πάροχο του ηλεκτρονικού ταχυδρομείου.
      * @param provider Ο πάροχος ηλεκτρονικού ταχυδρομείου.
      */
-    public void setProvider(EmailProvider provider) {
+    public void setProvider(String provider) {
         this.provider = provider;
     }
 
@@ -33,7 +27,7 @@ public class NotificationService {
     @SuppressWarnings("unchecked")
 	public void notifyApplicants() {
         if (provider == null) {
-            throw new LibraryException();
+//            throw new LibraryException();
         }
 
         EntityManager em  = JPAUtil.createEntityManager();
@@ -44,10 +38,10 @@ public class NotificationService {
         	.getResultList();
         
         for (AdList ad : allAds) {
-            if (ad.isOverdue() && ad.getApplicant().getEmail()!=null &&
+            if (ad.isRejected() && ad.getApplicant().getEmail()!=null &&
             		ad.getApplicant().getEmail().isValid()) {
-                String message = composeMessage(ad.getItem().getPet(),
-                        -ad.daysToDue());
+                String message = composeMessage(ad.getPet(),
+                        -ad.reasonForRejection());
                 sendEmail(ad.getApplicant(),
                         "Το αίτημα δεν εγκρίθηκε", message);
             }
@@ -74,7 +68,7 @@ public class NotificationService {
 
     private String composeMessage(Ad ad) {
         String message = "Η αιτηση δεν εκγριθηκε απο τον διαχειριστή για την αγγελία ";
-        message += ad.getId();
+        message += ad.getID();
         return message;
     }
 }
