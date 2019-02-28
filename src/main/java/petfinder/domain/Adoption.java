@@ -15,10 +15,10 @@ public class Adoption {
 	private String Details;
 	
 	
-	public Adoption(Date adDate, String details, Boolean approvedAd) {
+	public Adoption(Date adDate, String details, Boolean approved) {
 		this.adoptionDate = adDate;
 		this.Details = details;
-		this.approvedAd = approvedAd;
+		this.approvedAd = approved;
 	}
 	
 	public Date getAdoptionDate() {
@@ -33,8 +33,8 @@ public class Adoption {
 		return approvedAd;
 	}
 
-	public void setApprovement(Boolean approvedAd) {
-		approvedAd = approvedAd;
+	public void setApprovement(Boolean approved) {
+		approvedAd = approved;
 	}
 	
 	public void setAdoptionDate(Date adDate) {
@@ -53,6 +53,16 @@ public class Adoption {
 	public int reasonForRejection() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public Ad getPet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Applicant getApplicant() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

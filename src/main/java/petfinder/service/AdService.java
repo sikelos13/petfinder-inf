@@ -1,4 +1,4 @@
-package service;
+package petfinder.service;
 
 import java.util.List;
 import javax.persistence.EntityManager;

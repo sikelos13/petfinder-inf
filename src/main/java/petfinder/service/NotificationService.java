@@ -1,4 +1,4 @@
-package service;
+package petfinder.service;
 
 import java.util.List;
 import petfinder.domain.*;
@@ -10,12 +10,14 @@ import javax.persistence.EntityTransaction;
 
 public class NotificationService {
 //    private String provider;
-//    
+    private EntityManager em;
 //    
 //    public void setProvider(String provider) {
 //        this.employee = employee;
 //    }
-
+	public NotificationService(EntityManager em) {
+		this.em = em;
+	
     /**
      * Ενημερώνει όσους.
      * η αίτηση δεν έχει εγκριθεί.
@@ -34,12 +36,11 @@ public class NotificationService {
         	.getResultList();
         
         for (Adoption ad : allApplications) {
-            if (ad.isRejected() && Applicant.getApprovement()!=null &&
-            		ad.getApprovement().getTel().isValid()) {
+            if (ad.isRejected() && Applicant.getId() !=null &&
+            		Applicant.getTel() != null) {
                 String message = composeMessage(ad.getPet(),
                         -ad.reasonForRejection());
-                sentText(ad.getApprovement(),
-                        "Το αίτημα δεν εγκρίθηκε", message);
+                sentText(ad.getApplicant(),"Το αίτημα δεν εγκρίθηκε", message);
             }
         }
         
@@ -49,8 +50,7 @@ public class NotificationService {
     
 	
 
-    private void sentText(Applicant applicant,
-            String subject, String message) {
+    private void sentText(Applicant applicant,String subject, String message) {
         Integer phone  = applicant.getTel();
         if (phone == null || !phone.isValid()) {
             return;
@@ -63,7 +63,7 @@ public class NotificationService {
         Employee.sendText(textMessage);
     }
 
-    private String composeMessage(Ad ad) {
+    private String composeMessage(Ad ad, int i) {
         String message = "Η αιτηση δεν εκγριθηκε απο τον διαχειριστή για την αγγελία ";
         message += ad.getID();
         return message;

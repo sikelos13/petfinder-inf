@@ -6,18 +6,19 @@ public class Applicant {
 	
 	private Float HouseArea, PetBudgetPerWeek;
 	
-	private Integer AvailableHoursPerDay, Tel;
+	private Integer AvailableHoursPerDay, Tel, applicantId;
 	
 	
 	public Applicant() {
-		this("", "", "", "",null, null,null,null);
+		this("", "", "", "",null, null,null,null,null);
 	}
 	
-	public Applicant(String Country, String City, String Region, String Address, Integer Tel,
+	public Applicant(String Country, String City, String Region, String Address, Integer Tel, Integer applicantId,
 			Float HouseArea, Float PetBudgetPerWeek, Integer AvailableHoursPerDay) {
 		this.Country = Country;
 		this.City = City;
 		this.Region = Region;
+		this.applicantId = applicantId;
 		this.Tel = Tel;
 		this.Address = Address;
 		this.HouseArea = HouseArea;
@@ -39,6 +40,10 @@ public class Applicant {
 		return Tel;
 	}
 	
+	public Integer getId() {
+		return applicantId;
+	}
+	
 	public boolean isValid() {
         return true;
     }
@@ -46,6 +51,10 @@ public class Applicant {
 	
 	public void setTel(Integer Tel) {
 		this.Tel = Tel;
+	}
+	
+	public void setId(Integer applicantId) {
+		this.applicantId = applicantId;
 	}
 	
 	public void setCity(String City) {

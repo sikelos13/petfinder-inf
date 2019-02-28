@@ -10,13 +10,14 @@ import javax.persistence.Table;
 @Table(name = "Ads")
 public class Ad {
     
-	private int Id;
+	private int adId;
 	private Pet Animal;
 	private String Details;
 	
-	public Ad(Pet pet, String details) {
-		Animal = pet;
-		Details = details;
+	public Ad(Pet pet, String details, int id) {
+		this.Animal = pet;
+		this.adId = adId;
+		this.Details = details;
 		createID(); 
 	}
 	
@@ -25,7 +26,7 @@ public class Ad {
 	}
 	
 	public int getID() {
-		return Id;
+		return adId;
 	}
 	
 	public String getDetails() {
@@ -41,11 +42,11 @@ public class Ad {
 	}
 	
 	public void setID(int id) {
-		Id = id;
+		adId = id;
 	}
 	
 	private void createID() {
-		Id = 0; //@todo create ID
+		adId = 0; //@todo create ID
 	}
 
 }
