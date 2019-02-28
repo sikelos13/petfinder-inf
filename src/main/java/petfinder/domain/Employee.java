@@ -2,7 +2,7 @@ package petfinder.domain;
 
 public class Employee extends User {
 
-	private String jobTitle;
+	private String jobTitle, message;
 	
 	public Employee() {
 		super();
@@ -20,6 +20,10 @@ public class Employee extends User {
 	
 	public String getJobTitle() {
 		return this.jobTitle;
+	}
+	
+	public String sendText(String message) {
+		return message;
 	}
 
 }

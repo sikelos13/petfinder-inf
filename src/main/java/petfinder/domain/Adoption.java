@@ -10,17 +10,15 @@ import javax.persistence.Table;
 public class Adoption {
 
 	
-	
+	private Boolean approvedAd;
 	private Date adoptionDate;
 	private String Details;
 	
-	public Adoption(Date adDate) {
-		this(adDate, "");
-	}
 	
-	public Adoption(Date adDate, String details) {
-		adoptionDate = adDate;
-		Details = details;
+	public Adoption(Date adDate, String details, Boolean approvedAd) {
+		this.adoptionDate = adDate;
+		this.Details = details;
+		this.approvedAd = approvedAd;
 	}
 	
 	public Date getAdoptionDate() {
@@ -31,12 +29,30 @@ public class Adoption {
 		return Details;
 	}
 	
+	public Boolean getApprovement() {
+		return approvedAd;
+	}
+
+	public void setApprovement(Boolean approvedAd) {
+		approvedAd = approvedAd;
+	}
+	
 	public void setAdoptionDate(Date adDate) {
 		adoptionDate = adDate;
 	}
 	
 	public void setDetails(String details) {
 		Details = details;
+	}
+
+	public boolean isRejected() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public int reasonForRejection() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
