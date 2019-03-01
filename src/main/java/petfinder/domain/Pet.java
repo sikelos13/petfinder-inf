@@ -1,11 +1,19 @@
 package petfinder.domain;
 
 import java.util.List;
+
 import java.util.Vector;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-import java.awt.Image;
 import java.util.Date;
 
 
@@ -13,28 +21,35 @@ import java.util.Date;
 @Table(name = "Pets")
 public class Pet {
 	
+	@Id 
+    @Column(name="petId")
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	private int petId;
 
 	private String HealthStatus;
 	
-	private Float Age, Weight;
+	private float Age, Weight;
 	
-	private Boolean HasBeenAdopted;
+	private boolean HasBeenAdopted;
 	
 	public final Date ImportDate;
 	
 	private List<Image> images; 
+	
+	@ManyToMany(fetch=FetchType.LAZY)
+    @JoinColumn(name="breedID")
 	private Breed breed;
 
-	public Pet(String healthStatus, Float age, Float weight, Boolean hasBeenAdopted, int id) {
-		this.petId = id;
+	public Pet(Breed breed, String healthStatus, float age, float weight, boolean hasBeenAdopted) {
+		
 		this.HealthStatus = healthStatus;
 		this.HasBeenAdopted = hasBeenAdopted;
 		this.Weight = weight;
 		this.Age = age;
 		images = new Vector<Image>(); 
 		ImportDate = new Date(); //current date
-		createID(); 
+		this.setBreed(breed);
+	 
 	}
 
 	public void addImage(String url, String description) {
@@ -65,7 +80,7 @@ public class Pet {
 		this.Weight = weight;
 	}
 	
-	public Float getWeight() {
+	public float getWeight() {
 		return Weight;
 	}
 	
@@ -73,20 +88,25 @@ public class Pet {
 		this.petId = id;
 	}
 	
-	private void createID() {
-		this.petId = 0; //TODO create ID
-	}
 	
 	public int getID() {
 		return this.petId;
 	}
 	
-	public void setHasBeenAdopted(Boolean hasBeenAdopted) {
+	public void setHasBeenAdopted(boolean hasBeenAdopted) {
 		this.HasBeenAdopted = hasBeenAdopted;
 	}
 	
-	public Boolean getHasBeenAdopted() {
+	public boolean getHasBeenAdopted() {
 		return this.HasBeenAdopted;
+	}
+
+	public Breed getBreed() {
+		return breed;
+	}
+
+	public void setBreed(Breed breed) {
+		this.breed = breed;
 	}
 
 

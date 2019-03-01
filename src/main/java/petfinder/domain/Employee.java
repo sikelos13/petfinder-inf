@@ -1,14 +1,26 @@
 package petfinder.domain;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-import petfinder.contacts.TextMessage;
 
+@Entity
+@Table(name="employees")
 public class Employee extends User {
 
-	private String jobTitle, message;
+	@Id
+    @Column(name="employeeID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer employeeID;
+	
+	private String jobTitle;
 	
 	public Employee() {
 		super();
-		setJobTitle("UnKnown");
+		setJobTitle("Unknown");
 	}
 
 	public Employee(String FullName, String Telephone, String Email, String JobTitle) {
@@ -24,8 +36,5 @@ public class Employee extends User {
 		return this.jobTitle;
 	}
 	
-	public static void sendText(TextMessage message) {
-		
-	}
 
 }

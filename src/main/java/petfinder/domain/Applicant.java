@@ -2,56 +2,41 @@ package petfinder.domain;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
-import org.hibernate.annotations.Generated;
-
-import petfinder.contacts.TelephoneNumber;
-
-
 import java.util.List;
 import java.util.Vector;
-
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="applicants")
 public class Applicant extends User{
 	
-	private String Country, City, Region, Address;
-	
-	private float HouseArea, PetBudgetPerWeek;
-	
 	@Id
-    @Column(name="applicantId")
+    @Column(name="applicantID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long applicantId;
+    private Integer applicantID;
 
 	
-	@OneToOne(mappedBy="pets",fetch=FetchType.LAZY, 
+	@OneToMany(mappedBy="pets",fetch=FetchType.LAZY, 
             cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	List<Pet> listOfPets = new Vector<Pet>();
 	
-	private Integer AvailableHoursPerDay;
+	private float AvailableHoursPerDay;
+	private String Country, City, Region, Address;
+	private float HouseArea, PetBudgetPerWeek;
 	
-	 @org.hibernate.annotations.Type(
-	            type="petfinder.persistence.TelphoneNumberCustomType")
-	    @Column(name="Tel")
-	    private TelephoneNumber Tel;
-	 
+	public Applicant() {
+		
+	}
 	
-		public Applicant() {}
-	
-	public Applicant(String fullname, TelephoneNumber Tel, Long applicantId, String email, String Country, String City, String Region, String Address,
-			float HouseArea, Float PetBudgetPerWeek, Integer AvailableHoursPerDay) {
-//		super(fullname, Tel, email);
+	public Applicant(String fullname, String telephone, Long applicantId, String email, String Country, String City, String Region, String Address,
+			float HouseArea, float PetBudgetPerWeek, float AvailableHoursPerDay) {
+		super(fullname, telephone, email);
 
 		this.Country = Country;
 		this.City = City;
@@ -83,23 +68,15 @@ public class Applicant extends User{
 		this.Country = Country;
 	}
 	
-	public TelephoneNumber getTel() {
-		return Tel;
+	
+	public Integer getID() {
+		return applicantID;
 	}
 	
-	public Long getId() {
-		return applicantId;
-	}
-	
-	public boolean isValid() {
-        return true;
-    }
 
-	
-	public void setTel(TelephoneNumber Tel) {
-		this.Tel = Tel;
+	public void setID(Integer appID) {
+		applicantID = appID;
 	}
-	
 	
 	public void setCity(String City) {
 		this.City = City;
@@ -134,7 +111,7 @@ public class Applicant extends User{
 	}
 	
 	
-	public void setAvailableHoursPerDay(Integer AvailableHoursPerDay) {
+	public void setAvailableHoursPerDay(float AvailableHoursPerDay) {
 		this.AvailableHoursPerDay = AvailableHoursPerDay;
 	}
 	

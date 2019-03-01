@@ -15,29 +15,35 @@ import javax.persistence.*;
 @Table(name="breedsList")
 public class Breed {
 	
-	
+	@Id
+    @Column(name="breedID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer breedID;
   
+	@Column(name="BreedName", length=50, nullable = false)
 	private String BreedName;
-    
+	@Column(name="Animal", length=50, nullable = false)
     private String Animal;
     
-    private Float MinLivingArea;
+    private float MinLivingArea;
     
-    private Boolean NeedsGarden;
+    private boolean NeedsGarden;
     
     
-    private Integer MinHoursPerDay;
+    private float MinHoursPerDay;
     
-    private Float MinPetBudgetPerWeek;
+    private float MinPetBudgetPerWeek;
 
 	private List<Breed> NonCompBreed = new Vector<Breed>();
 
    
-    public Breed() { }
+    public Breed() {
+    	
+    }
 
    
-    public Breed(String BreedName, String Animal, Float MinLivingArea, Boolean NeedsGarden,
-    		List<Breed> NonCompBreed, Integer MinHoursPerDay, Float MinPetBudgetPerWeek) {
+    public Breed(String BreedName, String Animal, float MinLivingArea, boolean NeedsGarden,
+    		List<Breed> NonCompBreed, float MinHoursPerDay, float MinPetBudgetPerWeek) {
         this.BreedName = BreedName;
         this.Animal = Animal;
         this.MinLivingArea = MinLivingArea;
@@ -68,25 +74,25 @@ public class Breed {
     }
 
    
-    public void setMinLivingArea(Float MinLivingArea) {
+    public void setMinLivingArea(float MinLivingArea) {
         this.MinLivingArea = MinLivingArea;
     }
 
    
-    public Float getMinLivingArea() {
+    public float getMinLivingArea() {
         return MinLivingArea;
     }
 
-    public void setNeedsGarden(Boolean NeedsGarden) {
+    public void setNeedsGarden(boolean NeedsGarden) {
         this.NeedsGarden = NeedsGarden;
     }
 
    
-    public Boolean getNeedsGarden() {
+    public boolean getNeedsGarden() {
         return this.NeedsGarden;
     }
     
-    public void setMinPetBudgetPerWeek(Float MinPetBudgetPerWeek) {
+    public void setMinPetBudgetPerWeek(float MinPetBudgetPerWeek) {
         this.MinPetBudgetPerWeek = MinPetBudgetPerWeek;
     }
     
@@ -95,16 +101,16 @@ public class Breed {
     }
 
     
-    public Float getMinPetBudgetPerWeek() {
+    public float getMinPetBudgetPerWeek() {
         return this.MinPetBudgetPerWeek;
     }
     
-    public void setMinHoursPerDay(Integer MinHoursPerDay) {
+    public void setMinHoursPerDay(float MinHoursPerDay) {
         this.MinHoursPerDay = MinHoursPerDay;
     }
 
   
-    public Integer getMinHoursPerDay() {
+    public float getMinHoursPerDay() {
         return this.MinHoursPerDay;
     }
 

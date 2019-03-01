@@ -1,8 +1,6 @@
 package petfinder.domain;
 
 
-import java.util.Random;
-
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -16,21 +14,23 @@ import javax.persistence.Table;
 public class Ad {
     
 	@Id
-    @Column(name="id")
+    @Column(name="adID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private Long adId;
+	private Integer adID;
 	
 	@Embedded
-
 	private Pet Animal;
 	
+	@Embedded
+	private Employee author;
+	
+
 	private String Details;
 	
-	public Ad(Pet pet, String details, Long adId) {
+	public Ad(Pet pet, String details, Employee author) {
 		this.Animal = pet;
-		this.adId = adId;
 		this.Details = details;
-		//createID(); 
+		this.author = author;
 	}
 	
 	public Pet getPet() {
@@ -38,8 +38,8 @@ public class Ad {
 	}
 	
 
-	public Long getID() {
-		return adId;
+	public Integer getID() {
+		return adID;
 	}
 	
 	public String getDetails() {
@@ -54,8 +54,16 @@ public class Ad {
 		Details = details;
 	}
 	
-	public void setID(Long adId) {
-		this.adId = adId;
+	public void setID(Integer adId) {
+		this.adID = adId;
+	}
+	
+	public Employee getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Employee author) {
+		this.author = author;
 	}
 	
 	/*private void createID() {

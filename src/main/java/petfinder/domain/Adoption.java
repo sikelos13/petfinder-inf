@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -23,36 +23,38 @@ import javax.persistence.Table;
 public class Adoption {
 
 	@Id 
-    @Column(name="id")
+    @Column(name="adoptionID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    private Integer adoptionID;
 	
-	private Boolean approvedAd;
 	
 	@Column(name="adoptionDate")
 	private Date adoptionDate = new Date();
 	private String Details;
 	
 	
-	@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="petId")
+	@OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="petID")
     private Pet pet;
     
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="applicantId")
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="applicantID")
     private Applicant applicant;
 	
+    
+    public Adoption() {
+    	
+    }
 	
 	public Adoption(Date adDate, String details, Applicant applicant, Pet pet) {
 		this.adoptionDate = adDate;
 		this.Details = details;
-		this.setApprovement(true);
 		this.applicant = applicant;
 		this.pet = pet;
 	}
 	
 	public Integer getId() {
-        return id;
+        return adoptionID;
     }
 	
 	public Date getAdoptionDate() {
@@ -63,13 +65,6 @@ public class Adoption {
 		return Details;
 	}
 	
-	public Boolean getApprovement() {
-		return approvedAd;
-	}
-
-	public void setApprovement(Boolean approved) {
-		approvedAd = approved;
-	}
 	
 	public void setAdoptionDate(Date adDate) {
 		adoptionDate = adDate;
@@ -103,14 +98,6 @@ public class Adoption {
 		return applicant;
 	}
 
-	public boolean isRejected() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public int reasonForRejection() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 }
