@@ -1,8 +1,14 @@
 package petfinder.domain;
 
 import java.util.List;
+import java.util.Vector;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
+
+@Entity
+@Table(name = "Pets")
 public class Pet {
 	
 	private int petId;
@@ -13,9 +19,10 @@ public class Pet {
 	
 	private Boolean HasBeenAdopted;
 	
-	private Date ImportDate;
+	public final Date ImportDate;
 	
-	private List Image, Breed;
+	private List<Image> images; 
+	private Breed breed;
 
 	public Pet(String healthStatus, Float age, Float weight, Boolean hasBeenAdopted, int id) {
 		this.petId = id;
@@ -23,9 +30,18 @@ public class Pet {
 		this.HasBeenAdopted = hasBeenAdopted;
 		this.Weight = weight;
 		this.Age = age;
+		images = new Vector<Image>(); 
+		ImportDate = new Date(); //current date
 		createID(); 
 	}
 
+	public void addImage(String url, String description) {
+		images.add(new Image(url, description));
+	}
+	
+	public List<Image> getImages() {
+		return images;
+	}
 	
 	public void setHealthStatus(String healthStatus) {
 		this.HealthStatus = healthStatus;
@@ -56,7 +72,7 @@ public class Pet {
 	}
 	
 	private void createID() {
-		this.petId = 0; //@todo create ID
+		this.petId = 0; //TODO create ID
 	}
 	
 	public int getID() {

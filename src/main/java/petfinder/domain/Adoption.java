@@ -2,24 +2,58 @@ package petfinder.domain;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * Η υιοθεσία ενός κατοικιδίου
+ * Καταγράφει το γεγονός της υιοθεσίας.
+ *
+ */
+
 @Entity
-@Table(name = "Adoption")
+@Table(name = "adoptions")
 public class Adoption {
 
+	@Id 
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
 	
 	private Boolean approvedAd;
-	private Date adoptionDate;
+	
+	@Column(name="adoptionDate")
+	private Date adoptionDate = new Date();
 	private String Details;
 	
 	
-	public Adoption(Date adDate, String details, Boolean approved) {
+	@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="petId")
+    private Pet pet;
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="applicantId")
+    private Applicant applicant;
+	
+	
+	public Adoption(Date adDate, String details, Applicant applicant, Pet pet) {
 		this.adoptionDate = adDate;
 		this.Details = details;
-		this.approvedAd = approved;
+		this.setApprovement(true);
+		this.applicant = applicant;
+		this.pet = pet;
 	}
+	
+	public Integer getId() {
+        return id;
+    }
 	
 	public Date getAdoptionDate() {
 		return adoptionDate;
@@ -45,24 +79,28 @@ public class Adoption {
 		Details = details;
 	}
 
-	public boolean isRejected() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
+	 /**
+     * Θέτει τo applicant της υιοθεσίας.
+     * @param applicant Ο applicant της υιοθεσίας
+     * @see Borrower#getLoans()
+     */
+    protected void setApplicant(Applicant applicant) {
+        if (this.applicant != null) {
+            this.applicant.listOfPets.remove(pet);
+        }
+        this.applicant = applicant;
+        if (applicant != null) {
+            this.applicant.PetAdoption(pet);
+        }
+    }
 
-	public int reasonForRejection() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public Ad getPet() {
-		// TODO Auto-generated method stub
-		return null;
+	public Pet getPet() {
+		return pet;
 	}
 
 	public Applicant getApplicant() {
-		// TODO Auto-generated method stub
-		return null;
+		return applicant;
 	}
 
 }

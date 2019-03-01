@@ -1,6 +1,6 @@
 package petfinder.domain;
 
-public class User {
+public class User implements UserAccount{
 	
 	private String name, telephone, email;
 	
@@ -36,5 +36,11 @@ public class User {
 	
 	public String getEmail() {
 		return this.email;
+	}
+
+	@Override
+	public boolean Login() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

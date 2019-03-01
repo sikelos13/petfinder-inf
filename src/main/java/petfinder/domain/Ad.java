@@ -3,22 +3,33 @@ package petfinder.domain;
 
 import java.util.Random;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Ads")
 public class Ad {
     
-	private int adId;
+	@Id
+    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	
+	@Embedded
 	private Pet Animal;
+	
 	private String Details;
 	
 	public Ad(Pet pet, String details, int id) {
 		this.Animal = pet;
-		this.adId = adId;
+		this.id = id;
 		this.Details = details;
-		createID(); 
+		//createID(); 
 	}
 	
 	public Pet getPet() {
@@ -26,7 +37,7 @@ public class Ad {
 	}
 	
 	public int getID() {
-		return adId;
+		return id;
 	}
 	
 	public String getDetails() {
@@ -42,11 +53,11 @@ public class Ad {
 	}
 	
 	public void setID(int id) {
-		adId = id;
+		this.id = id;
 	}
 	
-	private void createID() {
-		adId = 0; //@todo create ID
-	}
+	/*private void createID() {
+		this.id = 0; //TODO create ID
+	}*/
 
 }

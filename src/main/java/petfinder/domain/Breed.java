@@ -7,12 +7,14 @@ import javax.persistence.*;
 
 
 /**
- * Η λίστα με τις ράτσες.
+ *  Ράτσα ζώου.
  *
  */
 @Entity
 @Table(name="breedsList")
 public class Breed {
+	
+	
   
 	private String BreedName;
     
@@ -27,7 +29,7 @@ public class Breed {
     
     private Float MinPetBudgetPerWeek;
 
-	private List<Breed> NonCompBreed;
+	private List<Breed> NonCompBreed = new Vector<Breed>;
 
    
     public Breed() { }
