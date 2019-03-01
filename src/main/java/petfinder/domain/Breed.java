@@ -2,6 +2,7 @@ package petfinder.domain;
 
 import java.util.List;
 import java.util.Set;
+import java.util.Vector;
 import java.util.HashSet;
 import javax.persistence.*;
 
@@ -29,7 +30,7 @@ public class Breed {
     
     private Float MinPetBudgetPerWeek;
 
-	private List<Breed> NonCompBreed = new Vector<Breed>;
+	private List<Breed> NonCompBreed = new Vector<Breed>();
 
    
     public Breed() { }
