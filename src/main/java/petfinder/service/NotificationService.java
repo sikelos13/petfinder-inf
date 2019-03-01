@@ -6,29 +6,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import petfinder.contacts.*;
+import petfinder.persistence.JPAUtil;
 
 
 public class NotificationService {
-//    private String provider;
-    private EntityManager em;
-//    
-//    public void setProvider(String provider) {
-//        this.employee = employee;
-//    }
-	public NotificationService(EntityManager em) {
-		this.em = em;
-	
-    /**
-     * Ενημερώνει όσους.
+
+    /*
+     * Ενημερώνει όσων
      * η αίτηση δεν έχει εγκριθεί.
      */
     @SuppressWarnings("unchecked")
 	public void notifyApplicants() {
-//        if (provider == null) {
-////            throw new LibraryException();
-//        }
 
-//        EntityManager em  = JPAUtil.createEntityManager();
+
+		EntityManager em  = JPAUtil.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         
@@ -36,8 +28,8 @@ public class NotificationService {
         	.getResultList();
         
         for (Adoption ad : allApplications) {
-            if (ad.isRejected() && Applicant.getId() !=null &&
-            		Applicant.getTel() != null) {
+            if (ad.isRejected() && ad.getApplicant().getTel() !=null &&
+            		ad.getApplicant().getId() != null) {
                 String message = composeMessage(ad.getPet(),
                         -ad.reasonForRejection());
                 sentText(ad.getApplicant(),"Το αίτημα δεν εγκρίθηκε", message);
@@ -49,15 +41,14 @@ public class NotificationService {
     }
     
 	
-
     private void sentText(Applicant applicant,String subject, String message) {
-        Integer phone  = applicant.getTel();
+    	TelephoneNumber phone  = applicant.getTel();
         if (phone == null || !phone.isValid()) {
             return;
         }
         
-        String textMessage = new textMessage();
-        textMessage.setTo(eMail);
+        TextMessage textMessage = new TextMessage();
+        textMessage.setTo(phone);
         textMessage.setSubject(subject);
         textMessage.setBody(message);
         Employee.sendText(textMessage);

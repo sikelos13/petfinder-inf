@@ -3,6 +3,9 @@ package petfinder.domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,14 +18,33 @@ public class Adoption {
 	private String Details;
 	
 	
-	public Adoption(Date adDate, String details, Boolean approved) {
+	   @ManyToOne(fetch=FetchType.LAZY)
+	    @JoinColumn(name="applicantId")
+	    private Applicant applicant;
+	   
+	   @ManyToOne(fetch=FetchType.LAZY)
+	    @JoinColumn(name="adId")
+	    private Ad ad;
+
+	
+	public Adoption(Date adDate, String details, Boolean approved, Applicant applicant, Ad ad) {
 		this.adoptionDate = adDate;
+		this.applicant = applicant;
 		this.Details = details;
+		this.ad = ad;
 		this.approvedAd = approved;
 	}
 	
 	public Date getAdoptionDate() {
 		return adoptionDate;
+	}
+	
+	public Applicant getApplicant() {
+		return applicant;
+	}
+	
+	public Ad getAd() {
+		return ad;
 	}
 	
 	public String getDetails() {
@@ -56,11 +78,6 @@ public class Adoption {
 	}
 
 	public Ad getPet() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Applicant getApplicant() {
 		// TODO Auto-generated method stub
 		return null;
 	}

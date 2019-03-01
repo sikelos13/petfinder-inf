@@ -1,4 +1,12 @@
 package petfinder.domain;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+import org.hibernate.annotations.Generated;
+
+import petfinder.contacts.TelephoneNumber;
+
 
 public class Applicant {
 	
@@ -6,14 +14,23 @@ public class Applicant {
 	
 	private Float HouseArea, PetBudgetPerWeek;
 	
-	private Integer AvailableHoursPerDay, Tel, applicantId;
+	private Integer AvailableHoursPerDay;
 	
+	 @org.hibernate.annotations.Type(
+	            type="petfinder.persistence.TelphoneNumberCustomType")
+	    @Column(name="Tel")
+	    private TelephoneNumber Tel;
+	 
+	 	@applicantId
+	 	@GeneratedValue
+	    @Column(name = "applicantId", updatable = false, nullable = false)
+		private Long applicantId;
 	
 	public Applicant() {
 		this("", "", "", "",null, null,null,null,null);
 	}
 	
-	public Applicant(String Country, String City, String Region, String Address, Integer Tel, Integer applicantId,
+	public Applicant(String Country, String City, String Region, String Address, TelephoneNumber Tel, Long applicantId,
 			Float HouseArea, Float PetBudgetPerWeek, Integer AvailableHoursPerDay) {
 		this.Country = Country;
 		this.City = City;
@@ -36,11 +53,11 @@ public class Applicant {
 		this.Country = Country;
 	}
 	
-	public Integer getTel() {
+	public TelephoneNumber getTel() {
 		return Tel;
 	}
 	
-	public Integer getId() {
+	public Long getId() {
 		return applicantId;
 	}
 	
@@ -49,13 +66,10 @@ public class Applicant {
     }
 
 	
-	public void setTel(Integer Tel) {
+	public void setTel(TelephoneNumber Tel) {
 		this.Tel = Tel;
 	}
 	
-	public void setId(Integer applicantId) {
-		this.applicantId = applicantId;
-	}
 	
 	public void setCity(String City) {
 		this.City = City;

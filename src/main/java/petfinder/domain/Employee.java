@@ -1,5 +1,7 @@
 package petfinder.domain;
 
+import petfinder.contacts.TextMessage;
+
 public class Employee extends User {
 
 	private String jobTitle, message;
@@ -22,8 +24,8 @@ public class Employee extends User {
 		return this.jobTitle;
 	}
 	
-	public String sendText(String message) {
-		return message;
+	public static void sendText(TextMessage message) {
+		
 	}
 
 }
