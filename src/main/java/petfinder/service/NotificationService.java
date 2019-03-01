@@ -54,9 +54,9 @@ public class NotificationService {
         Employee.sendText(textMessage);
     }
 
-    private String composeMessage(Ad ad, int i) {
+    private String composeMessage(Pet pet, int i) {
         String message = "Η αιτηση δεν εκγριθηκε απο τον διαχειριστή για την αγγελία ";
-        message += ad.getID();
+        message += pet.getID();
         return message;
     }
 }

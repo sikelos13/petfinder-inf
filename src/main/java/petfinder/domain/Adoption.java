@@ -103,4 +103,14 @@ public class Adoption {
 		return applicant;
 	}
 
+	public boolean isRejected() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public int reasonForRejection() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

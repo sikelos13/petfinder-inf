@@ -79,7 +79,7 @@ public class ApplicationCreationService {
 		} else if(!adFound) {
 			throw new LibraryException("Pet ad with id" + adId + " does not exist");
 		}else if(applicantFound && adFound) {
-			Adoption advert = new Adoption(null, "details", null, applicant, ad);
+			Adoption advert = new Adoption(null, null, null, null);
 			em.persist(adPet);
 		}
 
