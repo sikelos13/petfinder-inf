@@ -98,6 +98,16 @@ public class Adoption {
 		return applicant;
 	}
 
+	public int reasonForRejection() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public boolean isRejected() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 	
 
 }

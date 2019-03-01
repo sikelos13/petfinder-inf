@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import petfinder.contacts.TextMessage;
+
 
 @Entity
 @Table(name="employees")
@@ -34,6 +36,11 @@ public class Employee extends User {
 	
 	public String getJobTitle() {
 		return this.jobTitle;
+	}
+
+	public static void sendText(TextMessage textMessage) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

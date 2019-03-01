@@ -79,6 +79,11 @@ public class AdoptionService {
 		return false;
 	}
 
+	public Adoption createAdoption(String string, String string2, String string3, String string4) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 //	public List<AdList> findAllAds() {
 //		List<AdList> results = null;
 //

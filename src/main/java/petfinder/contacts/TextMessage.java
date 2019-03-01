@@ -6,7 +6,7 @@ package petfinder.contacts;
  */
 public class TextMessage {
     private TelephoneNumber from;
-    private TelephoneNumber to;
+    private String to;
     private String subject;
     private String body;
     
@@ -29,17 +29,17 @@ public class TextMessage {
 
     /**
      * Θέτει τον παραλήπτη του μηνύματος.
-     * @param to Ο παραλήπτης.
+     * @param phone Ο παραλήπτης.
      */
-    public void setTo(TelephoneNumber to) {
-        this.to = to;
+    public void setTo(String phone) {
+        this.to = phone;
     }
 
     /**
      * Επιστρέφει τον παραλήπτη του μηνύματος.
      * @return Ο παραλήπτης
      */
-    public TelephoneNumber getTo() {
+    public String getTo() {
         return to;
     }
     
