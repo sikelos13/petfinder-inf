@@ -79,12 +79,12 @@ public class AdoptionService {
 		return false;
 	}
 
-	public List<AdList> findAllAds() {
-		List<AdList> results = null;
-
-		results = em.createQuery("select a from AdList a", AdList.class)
-				.getResultList();
-
-		return results;
-	}
+//	public List<AdList> findAllAds() {
+//		List<AdList> results = null;
+//
+//		results = em.createQuery("select a from AdList a", AdList.class)
+//				.getResultList();
+//
+//		return results;
+//	}
 }

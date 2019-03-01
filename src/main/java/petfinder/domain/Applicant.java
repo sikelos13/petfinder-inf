@@ -1,4 +1,12 @@
 package petfinder.domain;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+
+import org.hibernate.annotations.Generated;
+
+import petfinder.contacts.TelephoneNumber;
+
 
 import java.util.List;
 import java.util.Vector;
@@ -24,19 +32,27 @@ public class Applicant extends User{
 	@Id
     @Column(name="applicantId")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer applicantId;
-	private int AvailableHoursPerDay, Tel;
+    private Long applicantId;
+
 	
 	@OneToOne(mappedBy="pets",fetch=FetchType.LAZY, 
             cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	List<Pet> listOfPets = new Vector<Pet>();
 	
+	private Integer AvailableHoursPerDay;
 	
-	public Applicant() {}
+	 @org.hibernate.annotations.Type(
+	            type="petfinder.persistence.TelphoneNumberCustomType")
+	    @Column(name="Tel")
+	    private TelephoneNumber Tel;
+	 
 	
-	public Applicant(String fullname, String Tel, String email, String Country, String City, String Region, String Address,
-			float HouseArea, Float PetBudgetPerWeek, int AvailableHoursPerDay) {
-		super(fullname, Tel, email);
+		public Applicant() {}
+	
+	public Applicant(String fullname, TelephoneNumber Tel, Long applicantId, String email, String Country, String City, String Region, String Address,
+			float HouseArea, Float PetBudgetPerWeek, Integer AvailableHoursPerDay) {
+//		super(fullname, Tel, email);
+
 		this.Country = Country;
 		this.City = City;
 		this.Region = Region;
@@ -67,11 +83,11 @@ public class Applicant extends User{
 		this.Country = Country;
 	}
 	
-	public int getTel() {
+	public TelephoneNumber getTel() {
 		return Tel;
 	}
 	
-	public int getId() {
+	public Long getId() {
 		return applicantId;
 	}
 	
@@ -80,13 +96,10 @@ public class Applicant extends User{
     }
 
 	
-	public void setTel(int Tel) {
+	public void setTel(TelephoneNumber Tel) {
 		this.Tel = Tel;
 	}
 	
-	public void setId(int applicantId) {
-		this.applicantId = applicantId;
-	}
 	
 	public void setCity(String City) {
 		this.City = City;
@@ -121,7 +134,7 @@ public class Applicant extends User{
 	}
 	
 	
-	public void setAvailableHoursPerDay(int AvailableHoursPerDay) {
+	public void setAvailableHoursPerDay(Integer AvailableHoursPerDay) {
 		this.AvailableHoursPerDay = AvailableHoursPerDay;
 	}
 	

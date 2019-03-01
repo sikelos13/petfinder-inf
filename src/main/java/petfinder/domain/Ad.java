@@ -18,16 +18,17 @@ public class Ad {
 	@Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private int id;
+	private Long adId;
 	
 	@Embedded
+
 	private Pet Animal;
 	
 	private String Details;
 	
-	public Ad(Pet pet, String details, int id) {
+	public Ad(Pet pet, String details, Long adId) {
 		this.Animal = pet;
-		this.id = id;
+		this.adId = adId;
 		this.Details = details;
 		//createID(); 
 	}
@@ -36,8 +37,9 @@ public class Ad {
 		return Animal;
 	}
 	
-	public int getID() {
-		return id;
+
+	public Long getID() {
+		return adId;
 	}
 	
 	public String getDetails() {
@@ -52,12 +54,13 @@ public class Ad {
 		Details = details;
 	}
 	
-	public void setID(int id) {
-		this.id = id;
+	public void setID(Long adId) {
+		this.adId = adId;
 	}
 	
 	/*private void createID() {
 		this.id = 0; //TODO create ID
 	}*/
+
 
 }

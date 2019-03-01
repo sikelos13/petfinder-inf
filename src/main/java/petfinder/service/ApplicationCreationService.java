@@ -1,6 +1,5 @@
 package petfinder.service;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import petfinder.domain.*;
@@ -13,14 +12,14 @@ import javax.persistence.Query;
 
 
 /**
- * Η υπηρεσία του δανεισμού. Αναλαμβάνει την αναζήτηση δανειζομένων και
- * αντιτύπων και καταγράφει τους δανεισμούς
- * 
- * @author Νίκος Διαμαντίδης
+ * Η υπηρεσία οπου καταγράφεται η αίτηση υιοθεσιας. Αναλαμβάνει την αναζήτηση αιτούντων και των 
+ * αγγελιών και δημιουργει την αίτηση βαση των Id τους.
  *
  */
 public class ApplicationCreationService {
 	private Applicant applicant;
+	private Ad ad;
+	private Adoption adoption;
 	private EntityManager em;
 
 	public ApplicationCreationService(EntityManager em) {
@@ -28,13 +27,13 @@ public class ApplicationCreationService {
 	}
 
 	/**
-	 * Αναζητά το δανειζόμενο με βάση τον αριθμό δανειζομένου.
+	 * Αναζητά τoν Applicant με βάση τον μοναδικό αριθμό id.
 	 * 
-	 * @param borrowerNo
-	 *            Ο αριθμός δανειζομένου
-	 * @return {@code true} αν βρεθεί ο δανειζόμενος
+	 * @param applicantId
+	 *            Ο αριθμός applicant
+	 * @return {@code true} αν βρεθεί ο applicant
 	 */
-	public Boolean findApplicant(int applicantId) {
+	public Boolean findApplicant(Long applicantId) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		try {
@@ -47,65 +46,63 @@ public class ApplicationCreationService {
 
 		return applicant != null;
 	}
+	
+	public Boolean findAd(Long adId) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		try {
+			ad = em.find(Ad.class, adId);
+			tx.commit();
+		} catch (NoResultException ex) {
+			ad = null;
+			tx.rollback();
+		}
+
+		return ad != null;
+		
+	}
 
 
 	/**
 	 * throws LibraryException with the error message
-	 * @param itemId
-	 * @param borrowerNo
+	 * @param adId
+	 * @param applicantId
 	 * @return
 	 */
-	public void adoptePet(int adId, int applicantId) {
+	public void createAdoption(Adoption adPet, Long adId, Long applicantId) {
 
 		boolean applicantFound = findApplicant(applicantId);
+		boolean adFound = findAd(adId);
 
 		if (!applicantFound) {
 			throw new LibraryException("Applicant with id " + applicantId + "  does not exist.");
+		} else if(!adFound) {
+			throw new LibraryException("Pet ad with id" + adId + " does not exist");
+		}else if(applicantFound && adFound) {
+			Adoption advert = new Adoption(null, "details", null, applicant, ad);
+			em.persist(adPet);
 		}
 
 	}
 
-//	@SuppressWarnings("unchecked")
-//	public List<Loan> findPendingLoans(boolean overdueOnly) {
-//		List<Loan> allLoans = new ArrayList<Loan>();
+//	
+//	public boolean createAdoption(Adoption b) {
 //
-//		Query query = null;
-//
-//		query = em
-//				.createQuery("select loan from Loan loan join fetch loan.borrower b"
-//						+ " join fetch loan.item i");
-//
-//		allLoans = query.getResultList();
-//
-//		if (!overdueOnly) {
-//			return allLoans;
-//		} else {
-//			List<Loan> overdueLoans = new ArrayList<Loan>();
-//
-//			for (Loan l : allLoans) {
-//
-//				if (l.isOverdue()) {
-//					overdueLoans.add(l);
-//				}
-//
-//			}
-//
-//			return overdueLoans;
+//		if (b != null) {
+//			em.persist(b);
+//			return true;
 //		}
 //
+//		return false;
+//		
+//		boolean applicantFound = findApplicant(applicantId);
+//
+//		if (!applicantFound) {
+//			throw new LibraryException("Applicant with id " + applicantId + "  does not exist.");
+//		}
 //	}
 	
-	public boolean createApplication(Applicant b) {
-
-		if (b != null) {
-			em.persist(b);
-			return true;
-		}
-
-		return false;
-	}
-	
-	public boolean deleteApplication(Applicant b) {
+	public boolean deleteAdoption(Adoption b) {
 
 		if (b != null) {
 			em.remove(b);
