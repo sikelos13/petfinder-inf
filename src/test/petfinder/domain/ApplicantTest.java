@@ -32,7 +32,7 @@ public class ApplicantTest {
 	
 	@Test
 	public void testValidAnimalWelfare(){
-		Applicant applicant = new Applicant(null, null, null, null, null, null, null, null, null, 0, 0, 0);
+		Applicant applicant = new Applicant();
 		applicant.setAddress("Kuprou-42");
 		applicant.setCountry("Greece");
 		applicant.setEmail("animalwelfare@test.gr");
