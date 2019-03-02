@@ -13,10 +13,6 @@ import petfinder.domain.Employee;
 import petfinder.domain.Pet;
 
 public class Initializer {
-
-	public static final int SPYROS_ID = 1;
-    public static final int STEFANOS_ID = 2;
-    public static final int MANOLIS_ID = 3;
     
     
     //διαγράφουμε όλα τα δεδομένα στη βάση δεδομένων
@@ -103,78 +99,68 @@ public class Initializer {
         
         Adoption adopt01 = new Adoption();
         adopt01.setDetails("Me epoptia");
-        adopt01.setPet(lykoskyloPet);
+        adopt01.setPet(ad01.getPet());
         if(!adopt01.isRejected()) {
         	adopt01.setApplicant(aplcant01);
+        	ad01.setActive(false);
         }
         
         Adoption adopt02 = new Adoption();
         adopt02.setDetails("Teleia!");
-        adopt02.setPet(labratorPet);
+        adopt02.setPet(ad02.getPet());
         if(!adopt02.isRejected()) {
         	adopt02.setApplicant(aplcant02);
+        	ad02.setActive(false);
+        }
+        
+        Adoption adopt03 = new Adoption();
+        adopt03.setDetails("Einai dyskolos anthropos. Megali prosoxi!");
+        adopt03.setPet(ad03.getPet());
+        if(!adopt03.isRejected()) {
+        	adopt03.setApplicant(aplcant02);
+        	ad03.setActive(false);
         }
         
         
-        /*Book umlUserGuide = new Book("The Unified Modeling Language User Guide", 
-                new ISBN("1"), "2", 2005, addisonWesley);
-        umlUserGuide.addAuthor(booch);
-        umlUserGuide.addAuthor(rumbaugh);
-        umlUserGuide.addAuthor(jacobson);
         
-        
-        Book umlDistilled = new Book("UML Distilled", new ISBN("2"), "3", 2004, addisonWesley);
-        umlDistilled.addAuthor(fowler);
-        
-        Book refactoring = new Book("Refactoring: Improving the Design of Existing Code", 
-                new ISBN("3"), "1", 1999, addisonWesley);
-        
-        
-        Item umlUserGuideItem1 = new Item(UML_USER_GUIDE_ID1);
-        umlUserGuideItem1.setBook(umlUserGuide);
-        umlUserGuideItem1.available();
-        
-        
-        Item umlDistilledItem2 = new Item(UML_DISTILLED_ID1);
-        umlDistilledItem2.setBook(umlDistilled);
-        umlDistilledItem2.available();
-        
-        Item refactoringItem3 = new Item(UML_REFACTORING_ID);
-        refactoringItem3.setBook(refactoring);
-        refactoringItem3.available();
-        
-        Item umlUserGuideItem4 = new Item(UML_USER_GUIDE_ID2);
-        umlUserGuideItem4.setBook(umlUserGuide);
-        umlUserGuideItem4.available();
-        
-        Item umlDistilledItem5 = new Item(UML_DISTILLED_ID2);
-        umlDistilledItem5.setBook(umlDistilled);
-        umlDistilledItem5.available();
         
         EntityManager em = JPAUtil.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         
-        em.persist(umlUserGuideItem1);
-        em.persist(umlDistilledItem2);
-        em.persist(refactoringItem3);
-        em.persist(umlUserGuideItem4);
-        em.persist(umlDistilledItem5);
+        em.persist(manolis);
+        em.persist(stefanos);
+        em.persist(spyros);
+        
+        em.persist(zeil);
+        em.persist(pet4u);
+        
+        em.persist(aplcant01);
+        em.persist(aplcant02);
         
         
-        BorrowerCategory professor = new BorrowerCategory("Καθηγητής", 180 , 6, Money.euros(0));
-        BorrowerCategory undergraduate = new BorrowerCategory("Φοιτητής", 7 , 4, Money.euros(5));
+        em.persist(lykoskylo);
+        em.persist(labrator);
+        em.persist(persias);
+        em.persist(kaukasou);
         
-        Borrower mgia = new Borrower(GIAKOUMAKIS_ID,"Μανόλης", "Γιακουμάκης", null, new EmailAddress("mgia@aueb.gr"), null);
-        mgia.setCategory(professor);
+        em.persist(lykoskyloPet);
+        em.persist(labratorPet);
+        em.persist(persiasPet);
+        em.persist(kaukasouPet);
         
-        Borrower ndia = new Borrower(DIAMANTIDIS_ID, "Νίκος", "Διαμαντίδης",null, new EmailAddress("nad@aueb.gr"), null);
-        ndia.setCategory(undergraduate);*/
+        em.persist(ad01);
+        em.persist(ad02);
+        em.persist(ad03);
+        em.persist(ad04);
         
-        //em.persist(mgia);
-        //em.persist(ndia);
-        //tx.commit();
-        //em.close();
+        em.persist(adopt01);
+        em.persist(adopt02);
+        em.persist(adopt03);
+        
+        
+        tx.commit();
+        em.close();
     }    
 
 }
