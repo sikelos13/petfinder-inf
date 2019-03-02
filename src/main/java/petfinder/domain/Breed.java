@@ -43,12 +43,11 @@ public class Breed {
 
    
     public Breed(String BreedName, String Animal, float MinLivingArea, boolean NeedsGarden,
-    		List<Breed> NonCompBreed, float MinHoursPerDay, float MinPetBudgetPerWeek) {
+    		float MinHoursPerDay, float MinPetBudgetPerWeek) {
         this.BreedName = BreedName;
         this.Animal = Animal;
         this.MinLivingArea = MinLivingArea;
         this.NeedsGarden = NeedsGarden;
-        this.NonCompBreed = NonCompBreed;
         this.MinPetBudgetPerWeek = MinPetBudgetPerWeek;
         this.MinHoursPerDay = MinHoursPerDay;
 
@@ -96,8 +95,20 @@ public class Breed {
         this.MinPetBudgetPerWeek = MinPetBudgetPerWeek;
     }
     
-    public Set<Breed> getBreed() {
+    /*public Set<Breed> getBreed() {
     	return new HashSet<Breed>(NonCompBreed);
+    }*/
+    
+    public void addNonCompBreed(Breed breed) {
+    	NonCompBreed.add(breed);
+    }
+    
+    public void removeNonCompBreed(Breed breed) {
+    	NonCompBreed.remove(breed);
+    }
+    
+    public List<Breed> getNonCompBreed() {
+    	return NonCompBreed;
     }
 
     

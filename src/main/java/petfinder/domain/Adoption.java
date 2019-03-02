@@ -37,7 +37,8 @@ public class Adoption {
     @JoinColumn(name="petID")
     private Pet pet;
     
-    @OneToOne(fetch=FetchType.LAZY)
+
+	@OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="applicantID")
     private Applicant applicant;
 	
@@ -65,6 +66,10 @@ public class Adoption {
 		return Details;
 	}
 	
+	public void setPet(Pet pet) {
+		this.pet = pet;
+	}
+	
 	
 	public void setAdoptionDate(Date adDate) {
 		adoptionDate = adDate;
@@ -78,9 +83,8 @@ public class Adoption {
 	 /**
      * Θέτει τo applicant της υιοθεσίας.
      * @param applicant Ο applicant της υιοθεσίας
-     * @see Borrower#getLoans()
      */
-    protected void setApplicant(Applicant applicant) {
+    public void setApplicant(Applicant applicant) {
         if (this.applicant != null) {
             this.applicant.listOfPets.remove(pet);
         }
@@ -103,6 +107,7 @@ public class Adoption {
 		return 0;
 	}
 
+	
 	public boolean isRejected() {
 		// TODO Auto-generated method stub
 		return false;
