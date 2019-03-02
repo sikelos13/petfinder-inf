@@ -1,31 +1,60 @@
 package petfinder.domain;
 
 
-import java.util.Random;
-
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Ads")
 public class Ad {
     
-	private int Id;
+	@Id
+    @Column(name="adID")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer adID;
+	
+	@Embedded
 	private Pet Animal;
+	
+	@Embedded
+	private Employee author;
+	
+	private boolean active;
+	
+
 	private String Details;
 	
-	public Ad(Pet pet, String details) {
-		Animal = pet;
-		Details = details;
-		createID(); 
+	public Ad(Pet pet, String details, Employee author) {
+		this(pet, details, author, true);
 	}
 	
+	public Ad(Pet pet, String details, Employee author, boolean status) {
+		this.Animal = pet;
+		this.Details = details;
+		this.author = author;
+		this.active = status;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	public Pet getPet() {
 		return Animal;
 	}
 	
-	public int getID() {
-		return Id;
+
+	public Integer getID() {
+		return adID;
 	}
 	
 	public String getDetails() {
@@ -40,12 +69,21 @@ public class Ad {
 		Details = details;
 	}
 	
-	public void setID(int id) {
-		Id = id;
+	public void setID(Integer adId) {
+		this.adID = adId;
 	}
 	
-	private void createID() {
-		Id = 0; //@todo create ID
+	public Employee getAuthor() {
+		return author;
 	}
+
+	public void setAuthor(Employee author) {
+		this.author = author;
+	}
+	
+	/*private void createID() {
+		this.id = 0; //TODO create ID
+	}*/
+
 
 }

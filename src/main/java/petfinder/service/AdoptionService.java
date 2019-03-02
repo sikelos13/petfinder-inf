@@ -1,4 +1,5 @@
-package service;
+package petfinder.service;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -6,6 +7,8 @@ import javax.persistence.EntityManager;
 import petfinder.domain.*;
 
 public class AdoptionService {
+	
+	private Date adoptionDate;
 
 	private EntityManager em;
 
@@ -40,8 +43,12 @@ public class AdoptionService {
 		}
 	}
 */
-	public Ad findApplicationById(int id) {
+	public Ad findAdById(int id) {
 		return em.find(Ad.class, id);
+	}
+	
+	public Applicant findApplicantById(int id) {
+		return em.find(Applicant.class, id);
 	}
 
 	public boolean serverOnUpdateApplication(Breed b) {
@@ -79,12 +86,9 @@ public class AdoptionService {
 		return false;
 	}
 
-	public List<AdList> findAllAds() {
-		List<AdList> results = null;
-
-		results = em.createQuery("select a from AdList a", AdList.class)
-				.getResultList();
-
-		return results;
+	public Adoption createAdoption(String strin1, String string, String string2, String string4) {
+		
+		return null;
 	}
+
 }

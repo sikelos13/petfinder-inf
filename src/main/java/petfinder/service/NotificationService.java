@@ -1,4 +1,4 @@
-package service;
+package petfinder.service;
 
 import java.util.List;
 import petfinder.domain.*;
@@ -6,27 +6,21 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import petfinder.contacts.*;
+import petfinder.persistence.JPAUtil;
 
 
 public class NotificationService {
-//    private String provider;
-//    
-//    
-//    public void setProvider(String provider) {
-//        this.employee = employee;
-//    }
 
-    /**
-     * Ενημερώνει όσους.
+    /*
+     * Ενημερώνει όσων
      * η αίτηση δεν έχει εγκριθεί.
      */
     @SuppressWarnings("unchecked")
 	public void notifyApplicants() {
-//        if (provider == null) {
-////            throw new LibraryException();
-//        }
 
-//        EntityManager em  = JPAUtil.createEntityManager();
+
+		EntityManager em  = JPAUtil.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         
@@ -34,12 +28,11 @@ public class NotificationService {
         	.getResultList();
         
         for (Adoption ad : allApplications) {
-            if (ad.isRejected() && Applicant.getApprovement()!=null &&
-            		ad.getApprovement().getTel().isValid()) {
+            if (ad.isRejected() && ad.getApplicant().getTelephone() !=null &&
+            		ad.getApplicant().getID() != null) {
                 String message = composeMessage(ad.getPet(),
                         -ad.reasonForRejection());
-                sentText(ad.getApprovement(),
-                        "Το αίτημα δεν εγκρίθηκε", message);
+                sentText(ad.getApplicant(),"Το αίτημα δεν εγκρίθηκε", message);
             }
         }
         
@@ -48,24 +41,22 @@ public class NotificationService {
     }
     
 	
-
-    private void sentText(Applicant applicant,
-            String subject, String message) {
-        Integer phone  = applicant.getTel();
-        if (phone == null || !phone.isValid()) {
+    private void sentText(Applicant applicant,String subject, String message) {
+    	String phone  = applicant.getTelephone();
+        if (phone == null || phone.length() <= 10) {
             return;
         }
         
-        String textMessage = new textMessage();
-        textMessage.setTo(eMail);
+        TextMessage textMessage = new TextMessage();
+        textMessage.setTo(phone);
         textMessage.setSubject(subject);
         textMessage.setBody(message);
         Employee.sendText(textMessage);
     }
 
-    private String composeMessage(Ad ad) {
+    private String composeMessage(Pet pet, int i) {
         String message = "Η αιτηση δεν εκγριθηκε απο τον διαχειριστή για την αγγελία ";
-        message += ad.getID();
+        message += pet.getID();
         return message;
     }
 }
