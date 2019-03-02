@@ -34,7 +34,7 @@ public class Applicant extends User{
 		
 	}
 	
-	public Applicant(String fullname, String telephone, Long applicantId, String Telephone, String email, String Country, String City, String Region, String Address,
+	public Applicant(String fullname, String telephone, String email, String Country, String City, String Region, String Address,
 			float HouseArea, float PetBudgetPerWeek, float AvailableHoursPerDay) {
 		super(fullname, telephone, email);
 
@@ -75,8 +75,7 @@ public class Applicant extends User{
 //	public void setTelephone(String Telephone) {
 //		this.Telephone = Telephone;
 //	}
-	
-	
+
 	public Integer getID() {
 		return applicantID;
 	}

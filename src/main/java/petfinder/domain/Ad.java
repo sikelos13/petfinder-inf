@@ -24,15 +24,30 @@ public class Ad {
 	@Embedded
 	private Employee author;
 	
+	private boolean active;
+	
 
 	private String Details;
 	
 	public Ad(Pet pet, String details, Employee author) {
+		this(pet, details, author, true);
+	}
+	
+	public Ad(Pet pet, String details, Employee author, boolean status) {
 		this.Animal = pet;
 		this.Details = details;
 		this.author = author;
+		this.active = status;
 	}
 	
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	public Pet getPet() {
 		return Animal;
 	}
