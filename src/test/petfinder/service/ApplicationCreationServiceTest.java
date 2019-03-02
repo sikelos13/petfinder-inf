@@ -8,12 +8,13 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import petfinder.domain.Ad;
+import petfinder.service.ApplicationCreationService;
 import petfinder.persistence.Initializer;
 import petfinder.persistence.JPAUtil;
+import petfinder.domain.*;
 
-public class AdoptionServiceTest {
-	private Ad ad;
+public class ApplicationCreationServiceTest {
+	private Adoption ad;
 	protected EntityManager em;
 	
 	@Before
@@ -31,21 +32,20 @@ public class AdoptionServiceTest {
 	}
 	
 	@Test
-	public void testPersistAValidAdoption(){
+	public void testPersistAValidApplicationCreation(){
 		Ad ad = new Ad(null, null, null);
-		AdoptionService service = new AdoptionService(em);
-		boolean newAdoption = service.approveApplication(ad);
+		ApplicationCreationService service = new ApplicationCreationService(em);
+		Adoption newAdoption = service.createApplication(ad, null, null);
 		// EntityManager.persist() updates the ID of the persisted object
-		Assert.assertNotNull("Excpected not null on finding ad id", service.findAdById(0));
-		Assert.assertNotNull("Excpected not null on finding applicant id", service.findApplicantById(0));
+		Assert.assertNotNull("Excpected not null adoption id", newAdoption.getId());
 		em.close(); // close session
 		
 		// new session, data will be retrieved from database
 		em = JPAUtil.getCurrentEntityManager();	
 
-		AdoptionService savedAdoptionService = em.find(AdoptionService.class, service.findAdById(0)); 
-		Assert.assertNotNull(savedAdoptionService);
-		Assert.assertEquals(newAdoption, savedAdoptionService.approveApplication(ad));
+		ApplicationCreationService savedAdoption = em.find(ApplicationCreationService.class, newAdoption.getId()); 
+		Assert.assertNotNull(savedAdoption);
+		Assert.assertEquals("Description", savedAdoption.createApplication(ad,null,null));
 		
 	}
 

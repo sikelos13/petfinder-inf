@@ -1,6 +1,7 @@
 package petfinder.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import petfinder.domain.*;
 import petfinder.service.LibraryException;
@@ -21,6 +22,9 @@ public class ApplicationCreationService {
 	private Ad ad;
 	private Adoption adoption;
 	private EntityManager em;
+	private Date adDate;
+	private String details;
+	private Pet pet;
 
 	public ApplicationCreationService(EntityManager em) {
 		this.em = em;
@@ -69,7 +73,9 @@ public class ApplicationCreationService {
 	 * @param applicantId
 	 * @return
 	 */
-	public void createAdoption(Adoption adPet, Long adId, Long applicantId) {
+	public Adoption createApplication(Ad adPet, Long adId, Long applicantId) {
+		Adoption application = new Adoption(null, null, null, null);
+
 
 		boolean applicantFound = findApplicant(applicantId);
 		boolean adFound = findAd(adId);
@@ -79,9 +85,12 @@ public class ApplicationCreationService {
 		} else if(!adFound) {
 			throw new LibraryException("Pet ad with id" + adId + " does not exist");
 		}else if(applicantFound && adFound) {
-			Adoption advert = new Adoption(null, null, null, null);
-			em.persist(adPet);
+			application = new Adoption();
+			em.persist(application);
+
 		}
+//		return adPet;
+		return application;
 
 	}
 
@@ -111,6 +120,7 @@ public class ApplicationCreationService {
 
 		return false;
 	}
+
 	
 }
 
