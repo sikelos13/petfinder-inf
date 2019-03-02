@@ -68,13 +68,14 @@ public class Applicant extends User{
 		this.Country = Country;
 	}
 	
-	public String getTelephone() {
-		return Country;
-	}
-	
+//	public String getTelephone() {
+//		return Country;
+//	}
+//	
+//	public void setTelephone(String Telephone) {
+//		this.Telephone = Telephone;
+//	}
 
-	
-	
 	public Integer getID() {
 		return applicantID;
 	}

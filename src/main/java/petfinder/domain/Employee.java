@@ -15,8 +15,7 @@ public class Employee extends User {
 
 	@Id
     @Column(name="employeeID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer employeeID;
+    @GeneratedValue(strategy = GenerationType.AUTO) Integer employeeID;
 	
 	private String jobTitle;
 	
