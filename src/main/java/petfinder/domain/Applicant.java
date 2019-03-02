@@ -27,7 +27,7 @@ public class Applicant extends User{
 	List<Pet> listOfPets = new Vector<Pet>();
 	
 	private float AvailableHoursPerDay;
-	private String Country, City, Region, Address, Telephone;
+	private String Country, City, Region, Address;
 	private float HouseArea, PetBudgetPerWeek;
 	
 	public Applicant() {
@@ -40,7 +40,6 @@ public class Applicant extends User{
 
 		this.Country = Country;
 		this.City = City;
-		this.Telephone = Telephone;
 		this.Region = Region;
 		this.Address = Address;
 		this.HouseArea = HouseArea;
@@ -69,13 +68,13 @@ public class Applicant extends User{
 		this.Country = Country;
 	}
 	
-	public String getTelephone() {
-		return Country;
-	}
-	
-	public void setTelephone(String Telephone) {
-		this.Telephone = Telephone;
-	}
+//	public String getTelephone() {
+//		return Country;
+//	}
+//	
+//	public void setTelephone(String Telephone) {
+//		this.Telephone = Telephone;
+//	}
 	
 	
 	public Integer getID() {
