@@ -42,6 +42,8 @@ public class Adoption {
     @JoinColumn(name="applicantID")
     private Applicant applicant;
 	
+	private boolean approved = false;
+	
     
     public Adoption() {
     	
@@ -109,8 +111,12 @@ public class Adoption {
 
 	
 	public boolean isRejected() {
-		// TODO Auto-generated method stub
-		return false;
+		return approved;
+	}
+	
+	public boolean approve() {
+		approved = true;
+		return approved;
 	}
 
 	
