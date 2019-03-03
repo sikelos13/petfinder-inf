@@ -9,7 +9,7 @@ import javax.persistence.NoResultException;
 import petfinder.domain.Pet;
 
 /**
- * Η υπηρεσία του ζώου. Αναλαμβάνει την αναζήτηση του ζώου και την καταχώριση
+ * Η υπηρεσία του ζώου. Αναλαμβάνει την αναζήτηση του ζώου και την καταχώρηση
  * του ζώου.
  * 
  * @author Spyros + Manolis + Stefanos

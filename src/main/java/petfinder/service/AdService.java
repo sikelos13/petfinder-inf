@@ -8,7 +8,7 @@ import javax.persistence.NoResultException;
 import petfinder.domain.Ad;
 
 /**
- * Η υπηρεσία της αγγελίας. Αναλαμβάνει την αναζήτηση αγγελίας και την καταχώριση
+ * Η υπηρεσία της αγγελίας. Αναλαμβάνει την αναζήτηση αγγελίας και την καταχώρηση
  * της αγγελίας.
  * 
  * @author Spyros + Manolis + Stefanos
