@@ -27,22 +27,7 @@ public class AdoptionService {
 
 		return results;
 	}
-/*
-	public Borrower createBorrower(Map<String, String> data) {
-		Borrower b = new Borrower();
-		try {
-			b.setBorrowerNo(Integer.valueOf(data
-					.get(BorrowerInfo.BORROWERNO_KEY)));
-			b.setFirstName(data.get(BorrowerInfo.FIRSTNAME_KEY));
-			b.setLastName(data.get(BorrowerInfo.LASTNAME_KEY));
-			b.setEmail(data.get(BorrowerInfo.EMAIL_KEY));
-			b.setTelephone(data.get(BorrowerInfo.TELEPHONE_KEY));
-			return b;
-		} catch (Exception e) {
-			return null;
-		}
-	}
-*/
+
 	public Ad findAdById(int id) {
 		return em.find(Ad.class, id);
 	}
@@ -66,7 +51,7 @@ public class AdoptionService {
 	 * @param b
 	 * @return
 	 */
-	public boolean createApplication(Ad b) {
+	public boolean approveApplication(Ad b) {
 
 		if (b != null) {
 			em.persist(b);
@@ -76,7 +61,7 @@ public class AdoptionService {
 		return false;
 	}
 	
-	public boolean deleteApplication(Ad b) {
+	public boolean rejectApplication(Ad b) {
 
 		if (b != null) {
 			em.remove(b);
@@ -84,11 +69,6 @@ public class AdoptionService {
 		}
 
 		return false;
-	}
-
-	public Adoption createAdoption(String strin1, String string, String string2, String string4) {
-		
-		return null;
 	}
 
 }
