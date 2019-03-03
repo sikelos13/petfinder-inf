@@ -80,9 +80,9 @@ public class ApplicationCreationService {
 		boolean adFound = findAd(adId);
 
 		if (!applicantFound) {
-			throw new ThrowAnException("Applicant with id " + applicantId + "  does not exist.");
+			throw new PetFinderException("Applicant with id " + applicantId + "  does not exist.");
 		} else if(!adFound) {
-			throw new ThrowAnException("Pet ad with id" + adId + " does not exist");
+			throw new PetFinderException("Pet ad with id" + adId + " does not exist");
 		}else if(applicantFound && adFound) {
 			application = new Adoption();
 			em.persist(application);
