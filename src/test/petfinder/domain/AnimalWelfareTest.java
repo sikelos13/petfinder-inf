@@ -1,5 +1,7 @@
 package petfinder.domain;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -8,53 +10,69 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import petfinder.domain.AnimalWelfare;
+import petfinder.domain.Ad;
+import petfinder.domain.Pet;
+import petfinder.domain.Employee;
 import petfinder.persistence.Initializer;
 import petfinder.persistence.JPAUtil;
 
 public class AnimalWelfareTest {
-	
+	Adoption adoption;
+	Pet pet;
+	Applicant applicant;
+	Date date;
+	AnimalWelfare welfare;
 	protected EntityManager em;
 	
 	@Before
 	public void setup(){
 		// prepare database for each test
-		em = JPAUtil.getCurrentEntityManager();
-		Initializer dataHelper = new Initializer();
-		dataHelper.prepareData();
-		
+		welfare = new AnimalWelfare(null, null, null, null, null, null);
+		welfare.setCountry("Greece");
+		welfare.setRegion("Attica");
+        welfare.setAddress("Troias");
+
 	}
 	
-	@After
-	public void tearDown(){
-		em.close();
-	}
 	
-	@Test
-	public void testValidAnimalWelfare(){
-		AnimalWelfare animalWelfare = new AnimalWelfare(null, null, null, null, null, null);
-		animalWelfare.setAddress("Kuprou-42");
-		animalWelfare.setCountry("Greece");
-		animalWelfare.setEmail("animalwelfare@test.gr");
-		animalWelfare.setRegion("Attica");
-		animalWelfare.setFullName("TestWelfare");
-
-		// EntityManager.persist() updates the ID of the persisted object
-		Assert.assertNotNull("Excpected not null animalWelfare id", animalWelfare.getAnimalWelfareID());
-		em.close(); // close session
-		
-		// new session, data will be retrieved from database
-		em = JPAUtil.getCurrentEntityManager();	
-
-		AnimalWelfare savedWelfare = em.find(AnimalWelfare.class, animalWelfare.getAnimalWelfareID()); 
-		Assert.assertNotNull(savedWelfare);
-		Assert.assertEquals("Kuprou-42", savedWelfare.getAddress());
-		Assert.assertEquals("Greece", savedWelfare.getCountry());
-		Assert.assertEquals("animalwelfare@test.gr", savedWelfare.getEmail());
-		Assert.assertEquals("Attica", savedWelfare.getRegion());
-		Assert.assertEquals("TestWelfare", savedWelfare.getFullName());
-
-		
-	}
+//	   @Test
+//	    public void addApplicant() {
+//		   Applicant applicant = new Applicant();
+//	        adoption.setApplicant(applicant);
+//	        Assert.assertEquals(applicant,adoption.getApplicant());
+//	    }
+	   
+	   @Test
+	    public void addCountry() {
+		   welfare.setCountry("Greece");
+	        Assert.assertEquals("Greece",welfare.getCountry());
+	    }
+	   
+	   @Test
+	    public void addRegion() {
+	        String regionTest = "Attica";
+	        welfare.setRegion(regionTest);
+	        Assert.assertEquals(regionTest,welfare.getRegion());
+	    }
+	   
+	   @Test
+	    public void addAddress() {
+		   String addressTest = "Troias 2";
+	        welfare.setAddress(addressTest);
+	        Assert.assertEquals(addressTest,welfare.getAddress());
+	    }
+	   
+	   @Test
+	    public void addDate() {
+	        welfare.setAnimalWelfareID(1);
+	        Assert.assertEquals((Integer) 1,welfare.getAnimalWelfareID());
+	    }
+	   
+//	   @Test
+//	    public void addId() {
+//	        Integer id = 1;
+//	        Assert.assertEquals((Integer) 1,adoption.getId());
+//	    }
+//	   
 
 }

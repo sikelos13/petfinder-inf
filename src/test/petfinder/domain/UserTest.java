@@ -1,5 +1,7 @@
 package petfinder.domain;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -8,50 +10,68 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import petfinder.domain.User;
+import petfinder.domain.Ad;
+import petfinder.domain.Pet;
+import petfinder.domain.Employee;
 import petfinder.persistence.Initializer;
 import petfinder.persistence.JPAUtil;
 
 public class UserTest {
-	
+	Adoption adoption;
+	Pet pet;
+	Applicant applicant;
+	Breed breed;
+	User user;
+	Image image;
 	protected EntityManager em;
 	
 	@Before
 	public void setup(){
 		// prepare database for each test
-		em = JPAUtil.getCurrentEntityManager();
-		Initializer dataHelper = new Initializer();
-		dataHelper.prepareData();
-		
+		user = new User();
+		user.setFullName("Test User");
+		user.setTelephone("2108946128");
+		user.setEmail("user@test.gr");
+
 	}
 	
-	@After
-	public void tearDown(){
-		em.close();
-	}
 	
-	@Test
-	public void testValidUser(){
-		User user = new User();
-		user.setFullName("User Test");
-		user.setTelephone("6923410132");
-		user.setEmail("user@test.com");
-
-		// EntityManager.persist() updates the ID of the persisted object
-		Assert.assertNotNull("Excpected not null pet id", user.getID());
-		em.close(); // close session
-		
-		// new session, data will be retrieved from database
-		em = JPAUtil.getCurrentEntityManager();	
-
-		User savedUser = em.find(User.class, user.getID()); 
-		Assert.assertNotNull(savedUser);
-		Assert.assertEquals("User Test", user.getFullName());
-		Assert.assertEquals("6923410132", user.getTelephone());
-		Assert.assertEquals("user@test.com", user.getEmail());
+//	   @Test
+//	    public void addApplicant() {
+//		   Applicant applicant = new Applicant();
+//	        adoption.setApplicant(applicant);
+//	        Assert.assertEquals(applicant,adoption.getApplicant());
+//	    }
+	   
+	   @Test
+	    public void addFullName() {
+		   String testFullName = "Test user";
+		   user.setFullName(testFullName);
+	        Assert.assertEquals(testFullName,user.getFullName());
+	    }
+	   
+	   @Test
+	    public void addTelephone() {
+	        String testTelephone = "2105876234";
+	        user.setTelephone(testTelephone);
+	        Assert.assertEquals(testTelephone,user.getTelephone());
+	    }
+	   
+	   @Test
+	    public void addEmail() {
+	        String testEmail = "user@test.gr";
+		   user.setEmail(testEmail);
+	        Assert.assertEquals(testEmail,user.getEmail());
+	    }
+	   
+	   @Test
+	    public void addId() {
+		   Integer testId = 2;
+		   user.setID(testId);
+	        Assert.assertEquals((Integer) testId,user.getID());
+	    }
+	   
 	
-
-		
-	}
+//	   
 
 }

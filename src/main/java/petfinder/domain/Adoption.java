@@ -102,9 +102,9 @@ public class Adoption {
 		return applicant;
 	}
 
-	public int reasonForRejection() {
+	public String getReasonForRejection() {
 		// TODO Auto-generated method stub
-		return 0;
+		return null;
 	}
 
 	

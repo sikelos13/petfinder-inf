@@ -65,17 +65,17 @@ public class Initializer {
         AnimalWelfare zeil = new AnimalWelfare("Zeil Pets", "2109988123", "zeil@yahoo.gr", "Alekou Keta 10 TK 12999", "Greece", "Ilioupoli");
         AnimalWelfare pet4u = new AnimalWelfare("Pet For you", "2109988233", "pet4u@yahoo.gr", "Zaxou 99 TK 14839", "Greece", "Thessaloniki");
         
-        Applicant aplcant01 = new Applicant("Maria Athanasiou", "6978899111", "mariaath@gmail.com", "Greece", "Larissa", "Larissa", "Mitropoleos 23 TK 43211", 86, 200, 6);
-        Applicant aplcant02 = new Applicant("Elena Papadea", "6943899111", "elena@gmail.com", "Greece", "Volos", "Nea Ionia", "Iolkou 100 TK 23211", 120, 130, 10);
+        Applicant aplcant01 = new Applicant("Maria Athanasiou", "6978899111", "mariaath@gmail.com", "Greece", "Larissa", "Larissa", "Mitropoleos 23 TK 43211", 86.00, 200.00, 6.00);
+        Applicant aplcant02 = new Applicant("Elena Papadea", "6943899111", "elena@gmail.com", "Greece", "Volos", "Nea Ionia", "Iolkou 100 TK 23211", 120.0, 130.0, 10.0);
         
         Breed labrator = new Breed("Labrator", "Dog", 20, true, 2, 100);
-        Pet labratorPet = new Pet(labrator, "Ygeiestato", 4, 10, false);
+        Pet labratorPet = new Pet(labrator, "Ygeiestato", 4.0, 10.0, false);
         Breed lykoskylo = new Breed("Lykoskylo", "Dog", 20, false, 3, 150);
-        Pet lykoskyloPet = new Pet(lykoskylo, "Ygeiestato", 3, 7, false);
+        Pet lykoskyloPet = new Pet(lykoskylo, "Ygeiestato", 3.0, 7.0, false);
         Breed persias = new Breed("Persias", "Cat", 5, false, 2, 40);
-        Pet persiasPet = new Pet(persias, "Xtyphmeno", 2, 2, false);
+        Pet persiasPet = new Pet(persias, "Xtyphmeno", 2.0, 2.0, false);
         Breed kaukasou = new Breed("Kaukasou", "Cat", 6, true, 6, 60);
-        Pet kaukasouPet = new Pet(kaukasou, "Ygeiestato", 3, 4, false);
+        Pet kaukasouPet = new Pet(kaukasou, "Ygeiestato", 3.0, 4.0, false);
         
         labrator.addNonCompBreed(persias);
         labrator.addNonCompBreed(kaukasou);
