@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import petfinder.domain.*;
-import petfinder.service.LibraryException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -81,9 +80,9 @@ public class ApplicationCreationService {
 		boolean adFound = findAd(adId);
 
 		if (!applicantFound) {
-			throw new LibraryException("Applicant with id " + applicantId + "  does not exist.");
+			throw new ThrowAnException("Applicant with id " + applicantId + "  does not exist.");
 		} else if(!adFound) {
-			throw new LibraryException("Pet ad with id" + adId + " does not exist");
+			throw new ThrowAnException("Pet ad with id" + adId + " does not exist");
 		}else if(applicantFound && adFound) {
 			application = new Adoption();
 			em.persist(application);
