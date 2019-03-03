@@ -36,6 +36,10 @@ public class Employee extends User {
 	public String getJobTitle() {
 		return this.jobTitle;
 	}
+	
+	public boolean acceptAdoption(Adoption adpt) {
+		return adpt.approve();
+	}
 
 	public static void sendText(TextMessage textMessage) {
 		// TODO Auto-generated method stub
