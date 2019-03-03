@@ -16,30 +16,16 @@ public class AdoptionService {
 		this.em = em;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Breed> findPetByBreed(String breed_name) {
 
-		List<Breed> results = null;
-		results = em
-				.createQuery(
-						"select b from Breed b where b.breed.BreedName like :name ")
-				.setParameter("name", breed_name).getResultList();
-
-		return results;
-	}
-
-	public Ad findAdById(int id) {
-		return em.find(Ad.class, id);
+	public Adoption findAdById(int id) {
+		return em.find(Adoption.class, id);
 	}
 	
-	public Applicant findApplicantById(int id) {
-		return em.find(Applicant.class, id);
-	}
 
-	public boolean serverOnUpdateApplication(Breed b) {
+	public boolean serverOnUpdateAdoption(Adoption adoption) {
 
-		if (b != null) {
-			em.merge(b);
+		if (adoption != null) {
+			em.merge(adoption);
 			return true;
 		}
 
@@ -47,24 +33,57 @@ public class AdoptionService {
 	}
 
 	/**
-	 * Creates a new borrower instance in the database
-	 * @param b
-	 * @return
+	 * Update Adoption with data
+	 * @param adoption
+	 * @return status
 	 */
-	public boolean approveApplication(Ad b) {
+	public boolean approveAdoption(Adoption adoption) {
 
-		if (b != null) {
-			em.persist(b);
+		if (adoption != null) {
+			adoption.getPet().setHasBeenAdopted(true);
+			adoption.getApplicant().PetAdoption(adoption.getPet());
+			em.persist(adoption);
 			return true;
 		}
 
 		return false;
 	}
 	
-	public boolean rejectApplication(Ad b) {
+	/**
+	 * Update Adoption with data.  Αpprove adoption
+	 * @param adoption, ad
+	 * @return status
+	 */
+	public boolean approveAdoption(Adoption adoption, Ad ad) {
 
-		if (b != null) {
-			em.remove(b);
+		if (adoption != null) {
+			ad.setActive(false);
+			adoption.getPet().setHasBeenAdopted(true);
+			adoption.getApplicant().PetAdoption(adoption.getPet());
+			em.persist(adoption);
+			return true;
+		}
+
+		return false;
+	}
+	
+	public boolean rejectAdoption(Adoption adoption) {
+
+		if (adoption != null) {
+			adoption.getPet().setHasBeenAdopted(false);
+			em.remove(adoption);
+			return true;
+		}
+
+		return false;
+	}
+	
+	public boolean rejectAdoption(Adoption adoption, Ad ad) {
+
+		if (adoption != null) {
+			adoption.getPet().setHasBeenAdopted(false);
+			ad.setActive(true);
+			em.remove(adoption);
 			return true;
 		}
 
