@@ -61,11 +61,4 @@ public class AnimalWelfareTest {
 	        Assert.assertEquals((Integer) 1,welfare.getAnimalWelfareID());
 	    }
 	   
-//	   @Test
-//	    public void addId() {
-//	        Integer id = 1;
-//	        Assert.assertEquals((Integer) 1,adoption.getId());
-//	    }
-//	   
-
 }

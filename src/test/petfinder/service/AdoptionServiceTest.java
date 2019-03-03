@@ -1,52 +1,48 @@
 package petfinder.service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
+import java.util.List;
+
 import org.junit.Test;
+import petfinder.domain.*;
 
-import petfinder.domain.Ad;
-import petfinder.persistence.Initializer;
-import petfinder.persistence.JPAUtil;
+public class AdoptionServiceTest extends PetfinderServiceTest {
 
-public class AdoptionServiceTest {
-	private Ad ad;
-	protected EntityManager em;
-	
-	@Before
-	public void setup(){
-		// prepare database for each test
-		em = JPAUtil.getCurrentEntityManager();
-		Initializer dataHelper = new Initializer();
-		dataHelper.prepareData();
+	@Test
+	public void testFindByIdAdoption() {
 		
+		AdoptionService service = new AdoptionService(em);
+		Adoption adoption = service.findAdById(0);
+
+		assertNotNull(adoption);
+//		assertEquals(3, ads.size());
 	}
-	
-	@After
-	public void tearDown(){
-		em.close();
+
+	@Test
+	public void testΑpproveAdoption() {
+
+		AdoptionService service = new AdoptionService(em);
+		Adoption adoptionTest = new Adoption();
+		 boolean adoption = service.approveAdoption(adoptionTest);
+		
+		 assertNotNull(adoption);
+//		 assertEquals(1, ads.size());
+
 	}
 	
 	@Test
-	public void testPersistAValidAdoption(){
-		Ad ad = new Ad(null, null, null);
-		AdoptionService service = new AdoptionService(em);
-		boolean newAdoption = service.approveApplication(ad);
-		// EntityManager.persist() updates the ID of the persisted object
-		Assert.assertNotNull("Excpected not null on finding ad id", service.findAdById(0));
-		Assert.assertNotNull("Excpected not null on finding applicant id", service.findApplicantById(0));
-		em.close(); // close session
-		
-		// new session, data will be retrieved from database
-		em = JPAUtil.getCurrentEntityManager();	
+	public void testRejectAdoption() {
 
-		AdoptionService savedAdoptionService = em.find(AdoptionService.class, service.findAdById(0)); 
-		Assert.assertNotNull(savedAdoptionService);
-		Assert.assertEquals(newAdoption, savedAdoptionService.approveApplication(ad));
+		AdoptionService service = new AdoptionService(em);
+		Adoption adoptionTest = new Adoption();
+		 boolean adoption = service.rejectAdoption(adoptionTest);
 		
+		 assertNotNull(adoption);
+
 	}
+	
 
 }

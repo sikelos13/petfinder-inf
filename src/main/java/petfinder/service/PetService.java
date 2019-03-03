@@ -18,7 +18,7 @@ import petfinder.domain.Pet;
 
 public class PetService {
 
-	
+
 	private EntityManager em;
 
 	public PetService(EntityManager em) {
