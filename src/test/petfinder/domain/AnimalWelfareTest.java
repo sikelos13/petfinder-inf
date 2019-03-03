@@ -34,13 +34,6 @@ public class AnimalWelfareTest {
 
 	}
 	
-	
-//	   @Test
-//	    public void addApplicant() {
-//		   Applicant applicant = new Applicant();
-//	        adoption.setApplicant(applicant);
-//	        Assert.assertEquals(applicant,adoption.getApplicant());
-//	    }
 	   
 	   @Test
 	    public void addCountry() {

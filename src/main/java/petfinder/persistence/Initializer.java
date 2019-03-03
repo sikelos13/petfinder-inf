@@ -68,13 +68,13 @@ public class Initializer {
         Applicant aplcant01 = new Applicant("Maria Athanasiou", "6978899111", "mariaath@gmail.com", "Greece", "Larissa", "Larissa", "Mitropoleos 23 TK 43211", 86.00, 200.00, 6.00);
         Applicant aplcant02 = new Applicant("Elena Papadea", "6943899111", "elena@gmail.com", "Greece", "Volos", "Nea Ionia", "Iolkou 100 TK 23211", 120.0, 130.0, 10.0);
         
-        Breed labrator = new Breed("Labrator", "Dog", 20, true, 2, 100);
+        Breed labrator = new Breed("Labrator", "Dog", 20.0, true, 2.0, 100.0);
         Pet labratorPet = new Pet(labrator, "Ygeiestato", 4.0, 10.0, false);
-        Breed lykoskylo = new Breed("Lykoskylo", "Dog", 20, false, 3, 150);
+        Breed lykoskylo = new Breed("Lykoskylo", "Dog", 20.0, false, 3.0, 150.0);
         Pet lykoskyloPet = new Pet(lykoskylo, "Ygeiestato", 3.0, 7.0, false);
-        Breed persias = new Breed("Persias", "Cat", 5, false, 2, 40);
+        Breed persias = new Breed("Persias", "Cat", 5.0, false, 2.0, 40.0);
         Pet persiasPet = new Pet(persias, "Xtyphmeno", 2.0, 2.0, false);
-        Breed kaukasou = new Breed("Kaukasou", "Cat", 6, true, 6, 60);
+        Breed kaukasou = new Breed("Kaukasou", "Cat", 6.0, true, 6.0, 60.0);
         Pet kaukasouPet = new Pet(kaukasou, "Ygeiestato", 3.0, 4.0, false);
         
         labrator.addNonCompBreed(persias);
