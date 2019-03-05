@@ -1,5 +1,7 @@
 package petfinder.domain;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -8,55 +10,92 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import petfinder.domain.Applicant;
+import petfinder.domain.Ad;
+import petfinder.domain.Pet;
+import petfinder.domain.Employee;
 import petfinder.persistence.Initializer;
 import petfinder.persistence.JPAUtil;
 
 public class ApplicantTest {
-	
+	Adoption adoption;
+	Pet pet;
+	Applicant applicant;
+	Date date;
+	AnimalWelfare welfare;
 	protected EntityManager em;
 	
 	@Before
 	public void setup(){
 		// prepare database for each test
-		em = JPAUtil.getCurrentEntityManager();
-		Initializer dataHelper = new Initializer();
-		dataHelper.prepareData();
-		
-	}
-	
-	@After
-	public void tearDown(){
-		em.close();
-	}
-	
-	@Test
-	public void testValidAnimalWelfare(){
-		Applicant applicant = new Applicant();
-		applicant.setAddress("Kuprou-42");
+		applicant = new Applicant(null, null, null, null, null, null, null, 0.0, 0.0, 0.0);
 		applicant.setCountry("Greece");
-		applicant.setEmail("animalwelfare@test.gr");
 		applicant.setRegion("Attica");
-		applicant.setFullName("Stefanos-Ath");
-		applicant.setTelephone("6934120592");
+		applicant.setAddress("Troias");
 
-		// EntityManager.persist() updates the ID of the persisted object
-		Assert.assertNotNull("Excpected not null applicant id", applicant.getID());
-		em.close(); // close session
-		
-		// new session, data will be retrieved from database
-		em = JPAUtil.getCurrentEntityManager();	
-
-		Applicant savedApplicant = em.find(Applicant.class, applicant.getID()); 
-		Assert.assertNotNull(savedApplicant);
-		Assert.assertEquals("Kuprou-42", savedApplicant.getAddress());
-		Assert.assertEquals("Greece", savedApplicant.getCountry());
-		Assert.assertEquals("animalwelfare@test.gr", savedApplicant.getEmail());
-		Assert.assertEquals("Attica", savedApplicant.getRegion());
-		Assert.assertEquals("Stefanos-Ath", savedApplicant.getFullName());
-		Assert.assertEquals("6934120592", savedApplicant.getTelephone());
-
-		
 	}
+	
+	
+//	   @Test
+//	    public void addApplicant() {
+//		   Applicant applicant = new Applicant();
+//	        adoption.setApplicant(applicant);
+//	        Assert.assertEquals(applicant,adoption.getApplicant());
+//	    }
+	   
+	   @Test
+	    public void addCountry() {
+		   applicant.setCountry("Greece");
+	        Assert.assertEquals("Greece",applicant.getCountry());
+	    }
+	   
+	   @Test
+	    public void addRegion() {
+	        String regionTest = "Attica";
+	        applicant.setRegion(regionTest);
+	        Assert.assertEquals(regionTest,applicant.getRegion());
+	    }
+	   
+	   @Test
+	    public void addAddress() {
+		   String addressTest = "Troias 2";
+		   applicant.setAddress(addressTest);
+	        Assert.assertEquals(addressTest,applicant.getAddress());
+	    }
+	   
+	   @Test
+	    public void addCity() {
+		   String cityTest = "Athens";
+		   applicant.setCity(cityTest);
+	        Assert.assertEquals(cityTest,applicant.getCity());
+	    }
+	   
+	   @Test
+	    public void addHouseArea() {
+		   Double testValue = 26.00;
+		   applicant.setHouseArea(testValue);
+	        Assert.assertEquals((Double) testValue,applicant.getHouseArea());
+	    }
+	   
+	   @Test
+	    public void addAvailableHoursPerDay() {
+		   Double testValue = 31.5;
+		   applicant.setAvailableHoursPerDay(testValue);
+	        Assert.assertEquals((Double) testValue,applicant.getAvailableHoursPerDay());
+	    }
+	   
+	   @Test
+	    public void addPetBudgetPerWeek() {
+		   Double testValue = 250.00;
+		   applicant.setPetBudgetPerWeek(testValue);
+	        Assert.assertEquals((Double) testValue,applicant.getPetBudgetPerWeek());
+	    }
+	   
+	   @Test
+	    public void addId() {
+		   Integer testId = 2;
+		   applicant.setID(testId);
+	        Assert.assertEquals((Integer) testId,applicant.getID());
+	    }
+//	   
 
 }

@@ -31,7 +31,7 @@ public class NotificationService {
             if (ad.isRejected() && ad.getApplicant().getTelephone() !=null &&
             		ad.getApplicant().getID() != null) {
                 String message = composeMessage(ad.getPet(),
-                        -ad.reasonForRejection());
+                        ad.getReasonForRejection());
                 sentText(ad.getApplicant(),"Το αίτημα δεν εγκρίθηκε", message);
             }
         }
@@ -54,7 +54,7 @@ public class NotificationService {
         Employee.sendText(textMessage);
     }
 
-    private String composeMessage(Pet pet, int i) {
+    private String composeMessage(Pet pet, String string) {
         String message = "Η αιτηση δεν εκγριθηκε απο τον διαχειριστή για την αγγελία ";
         message += pet.getID();
         return message;

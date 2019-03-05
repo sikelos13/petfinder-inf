@@ -28,7 +28,7 @@ public class Pet {
 
 	private String HealthStatus;
 	
-	private float Age, Weight;
+	private Double Age, Weight;
 	
 	private boolean HasBeenAdopted;
 	
@@ -40,7 +40,7 @@ public class Pet {
     @JoinColumn(name="breedID")
 	private Breed breed;
 
-	public Pet(Breed breed, String healthStatus, float age, float weight, boolean hasBeenAdopted) {
+	public Pet(Breed breed, String healthStatus, Double age, Double weight, boolean hasBeenAdopted) {
 		
 		this.HealthStatus = healthStatus;
 		this.HasBeenAdopted = hasBeenAdopted;
@@ -68,19 +68,19 @@ public class Pet {
 		return HealthStatus;
 	}
 	
-	public void setAge(Float age) {
+	public void setAge(Double age) {
 		this.Age = age;
 	}
 	
-	public Float getAge() {
+	public Double getAge() {
 		return Age;
 	}
 	
-	public void setWeight(Float weight) {
+	public void setWeight(Double weight) {
 		this.Weight = weight;
 	}
 	
-	public float getWeight() {
+	public Double getWeight() {
 		return Weight;
 	}
 	

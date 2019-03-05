@@ -1,5 +1,7 @@
 package petfinder.domain;
 
+import java.util.Date;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -8,55 +10,86 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import petfinder.domain.Ad;
 import petfinder.domain.Pet;
+import petfinder.domain.Employee;
 import petfinder.persistence.Initializer;
 import petfinder.persistence.JPAUtil;
 
 public class PetTest {
-	
+	Adoption adoption;
+	Pet pet;
+	Applicant applicant;
+	Breed breed;
+	AnimalWelfare welfare;
+	Image image;
 	protected EntityManager em;
-	private Breed breed;
 	
 	@Before
 	public void setup(){
 		// prepare database for each test
-		em = JPAUtil.getCurrentEntityManager();
-		Initializer dataHelper = new Initializer();
-		dataHelper.prepareData();
-		
-	}
-	
-	@After
-	public void tearDown(){
-		em.close();
-	}
-	
-	@Test
-	public void testValidPet(){
-		breed = new Breed();
-		Pet pet = new Pet(breed, null, 0, 0, false);
-		pet.setAge((float) 4.0);
-		pet.setBreed(breed);
+		pet = new Pet(null, null, null, null, false);
 		pet.setHealthStatus("Healthy");
-		pet.setWeight((float) 17.5);
+		pet.setAge(6.4);
 		pet.setHasBeenAdopted(false);
 
-		// EntityManager.persist() updates the ID of the persisted object
-		Assert.assertNotNull("Excpected not null pet id", pet.getID());
-		em.close(); // close session
-		
-		// new session, data will be retrieved from database
-		em = JPAUtil.getCurrentEntityManager();	
-
-		Pet savedPet = em.find(Pet.class, pet.getID()); 
-		Assert.assertNotNull(savedPet);
-		Assert.assertEquals("Age",4.0, savedPet.getAge(),0);
-		Assert.assertEquals(breed, savedPet.getBreed());
-		Assert.assertEquals("Healthy", savedPet.getHealthStatus());
-		Assert.assertEquals("Weight", 17.5, savedPet.getWeight(), 0);
-		Assert.assertEquals(false, savedPet.getHasBeenAdopted());
-
-		
 	}
+	
+	
+//	   @Test
+//	    public void addApplicant() {
+//		   Applicant applicant = new Applicant();
+//	        adoption.setApplicant(applicant);
+//	        Assert.assertEquals(applicant,adoption.getApplicant());
+//	    }
+	   
+	   @Test
+	    public void addImage() {
+		   Image testImage = new Image("testImageUrl", "testImage Description");
+	        Assert.assertEquals(testImage,pet.getImages());
+	    }
+	   
+	   @Test
+	    public void addHealthStatus() {
+	        String healthStatusTest = "Healthy";
+	        pet.setHealthStatus(healthStatusTest);
+	        Assert.assertEquals(healthStatusTest,pet.getHealthStatus());
+	    }
+	   
+	   @Test
+	    public void addAge() {
+		   Double ageTest = 7.2;
+		   pet.setAge(ageTest);
+	        Assert.assertEquals((Double) ageTest,pet.getAge());
+	    }
+	   
+	   @Test
+	    public void addWeight() {
+		   Double weightTest = 29.7;
+		   pet.setWeight(weightTest);
+	        Assert.assertEquals((Double) weightTest,pet.getWeight());
+	    }
+	   
+	   @Test
+	    public void addHasBeenAdopted() {
+		   Boolean adoptedTest = true;
+		   pet.setHasBeenAdopted(adoptedTest);
+	        Assert.assertEquals((Boolean) adoptedTest,pet.getHasBeenAdopted());
+	    }
+	   
+	   @Test
+	    public void addBreed() {
+		   Breed testBreed = new Breed();
+		   pet.setBreed(testBreed);
+	        Assert.assertEquals(testBreed,pet.getBreed());
+	    }
+	   
+	   
+	   @Test
+	    public void addId() {
+//		   pet.setID(1);
+	        Assert.assertNotNull(pet.getID());
+	    }
+//	   
 
 }

@@ -10,52 +10,67 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import petfinder.domain.Adoption;
+import petfinder.domain.Ad;
+import petfinder.domain.Pet;
+import petfinder.domain.Employee;
 import petfinder.persistence.Initializer;
 import petfinder.persistence.JPAUtil;
 
 public class AdoptionTest {
-	
+	Adoption adoption;
+	Pet pet;
+	Applicant applicant;
+	Date date;
 	protected EntityManager em;
-	private Date testDate;
-	private Applicant applicant;
 	
 	@Before
 	public void setup(){
 		// prepare database for each test
-		em = JPAUtil.getCurrentEntityManager();
-		Initializer dataHelper = new Initializer();
-		dataHelper.prepareData();
-		
-	}
-	
-	@After
-	public void tearDown(){
-		em.close();
-	}
-	
-	@Test
-	public void testValidAdoption(){
-		Applicant applicant = new Applicant();
-		testDate = new Date();
-		Adoption adoption = new Adoption(null, null, null, null);
-		adoption.setAdoptionDate(testDate);
-		adoption.setDetails("Details test");
+		adoption = new Adoption();
+		adoption.setDetails("Some test details");
 		adoption.setApplicant(applicant);
-		// EntityManager.persist() updates the ID of the persisted object
-		Assert.assertNotNull("Excpected not null adoption id", adoption.getId());
-		em.close(); // close session
-		
-		// new session, data will be retrieved from database
-		em = JPAUtil.getCurrentEntityManager();	
-
-		Adoption savedAdoption = em.find(Adoption.class, adoption.getId()); 
-		Assert.assertNotNull(savedAdoption);
-		Assert.assertEquals("Details test", savedAdoption.getDetails());
-		Assert.assertEquals(testDate, savedAdoption.getAdoptionDate());
-		Assert.assertEquals(applicant, savedAdoption.getApplicant());
-
 		
 	}
+	
+	
+//	   @Test
+//	    public void addApplicant() {
+//		   Applicant applicant = new Applicant();
+//	        adoption.setApplicant(applicant);
+//	        Assert.assertEquals(applicant,adoption.getApplicant());
+//	    }
+	   
+	   @Test
+	    public void addPet() {
+	        Pet pet = new Pet(null, null, null, null, false);
+	        adoption.setPet(pet);
+	        Assert.assertEquals(pet,adoption.getPet());
+	    }
+	   
+	   @Test
+	    public void addDetails() {
+	        String detailTest = "test string for adoption class";
+	        adoption.setDetails(detailTest);
+	        Assert.assertEquals("test string for adoption class",adoption.getDetails());
+	    }
+	   
+	   @Test
+	    public void isRejected() {
+	        Assert.assertEquals(false,adoption.isRejected());
+	    }
+	   
+	   @Test
+	    public void addDate() {
+	        Date dateTest = new Date();
+	        adoption.setAdoptionDate(dateTest);
+	        Assert.assertEquals(dateTest,adoption.getAdoptionDate());
+	    }
+	   
+//	   @Test
+//	    public void addId() {
+//	        Integer id = 1;
+//	        Assert.assertEquals((Integer) 1,adoption.getId());
+//	    }
+//	   
 
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="14.2.0">
+<diagram program="umlet" version="14.3.0">
   <zoom_level>10</zoom_level>
   <element>
     <id>UMLClass</id>
@@ -7,12 +7,11 @@
       <x>0</x>
       <y>0</y>
       <w>130</w>
-      <h>80</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>UserAccount
 --
 username: String
-
 password: String</panel_attributes>
     <additional_attributes/>
   </element>
@@ -35,15 +34,15 @@ m2=1..1</panel_attributes>
       <x>820</x>
       <y>0</y>
       <w>140</w>
-      <h>110</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>AnimalWelfare
 --
 Address: String
-
 Country: String
-
-Region: String</panel_attributes>
+Region: String
+--
+get/set functions</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -52,28 +51,30 @@ Region: String</panel_attributes>
       <x>400</x>
       <y>0</y>
       <w>210</w>
-      <h>110</h>
+      <h>100</h>
     </coordinates>
     <panel_attributes>User
 --
 name: String
-
 tel: Integer
-
-email: String</panel_attributes>
+email: String
+--
+get/set functions</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>450</x>
-      <y>250</y>
+      <y>220</y>
       <w>130</w>
-      <h>50</h>
+      <h>70</h>
     </coordinates>
     <panel_attributes>Employee
 --
 JobTitle: String
+--
+get/set functions
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -95,7 +96,7 @@ JobTitle: String
       <x>10</x>
       <y>210</y>
       <w>220</w>
-      <h>270</h>
+      <h>340</h>
     </coordinates>
     <panel_attributes>Applicant
 --
@@ -115,7 +116,10 @@ ListOfPets: Pet
 
 AvailableHoursPerDay: Integer
 
-PetBudgetPerWeek: Float</panel_attributes>
+PetBudgetPerWeek: Float
+--
+get/set functions
+void PetAdoption(Pet)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -134,21 +138,21 @@ PetBudgetPerWeek: Float</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>500</x>
-      <y>100</y>
+      <y>90</y>
       <w>100</w>
-      <h>170</h>
+      <h>150</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 &lt;&lt;extends&gt;&gt;</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
       <x>770</x>
-      <y>220</y>
-      <w>220</w>
-      <h>240</h>
+      <y>200</y>
+      <w>240</w>
+      <h>270</h>
     </coordinates>
     <panel_attributes>Pet
 --
@@ -165,16 +169,19 @@ Photo: List&lt;Image&gt;
 ImportDate: Date
 
 HasBeenAdopted: Boolean
+--
+get/set functions
+void setHasBeenAdopted(boolean)
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>410</x>
-      <y>430</y>
-      <w>220</w>
-      <h>240</h>
+      <x>380</x>
+      <y>400</y>
+      <w>250</w>
+      <h>290</h>
     </coordinates>
     <panel_attributes>Breed
 --
@@ -191,6 +198,10 @@ NonCompBreed: List&lt;Breed&gt;
 MinHoursPerDay: Integer
 
 MinPetBudgetPerWeek: Float
+--
+get/set functions
+void addNonCompBreed(Breed)
+void removeNonCompBreed(Breed)
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -198,21 +209,7 @@ MinPetBudgetPerWeek: Float
     <id>Relation</id>
     <coordinates>
       <x>500</x>
-      <y>290</y>
-      <w>90</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>lt=-
-m1=0..*
-m2=1..1
-Registers</panel_attributes>
-    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>850</x>
-      <y>100</y>
+      <y>280</y>
       <w>90</w>
       <h>140</h>
     </coordinates>
@@ -223,18 +220,35 @@ Registers</panel_attributes>
     <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
   </element>
   <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>850</x>
+      <y>90</y>
+      <w>90</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=0..*
+m2=1..1
+Registers</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>820</x>
-      <y>580</y>
-      <w>130</w>
-      <h>80</h>
+      <x>770</x>
+      <y>560</y>
+      <w>210</w>
+      <h>110</h>
     </coordinates>
     <panel_attributes>Adoption
 --
 Date: Datetime
 
 Details: String
+--
+get/set functions
+void setApplicant(Applicant)
 </panel_attributes>
     <additional_attributes/>
   </element>
@@ -242,29 +256,29 @@ Details: String
     <id>Relation</id>
     <coordinates>
       <x>870</x>
-      <y>450</y>
+      <y>460</y>
       <w>80</w>
-      <h>150</h>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..1
 m2=1..1
 Includes</panel_attributes>
-    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>130</x>
-      <y>470</y>
-      <w>830</w>
-      <h>280</h>
+      <y>540</y>
+      <w>840</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..1
 m2=0..1
 Assigned</panel_attributes>
-    <additional_attributes>790.0;190.0;790.0;260.0;10.0;260.0;10.0;10.0</additional_attributes>
+    <additional_attributes>790.0;130.0;790.0;190.0;10.0;190.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
@@ -272,13 +286,13 @@ Assigned</panel_attributes>
       <x>620</x>
       <y>320</y>
       <w>170</w>
-      <h>240</h>
+      <h>210</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1..1
 m2=0..*
 Has</panel_attributes>
-    <additional_attributes>10.0;210.0;70.0;210.0;70.0;10.0;150.0;10.0</additional_attributes>
+    <additional_attributes>10.0;180.0;70.0;180.0;70.0;10.0;150.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -291,23 +305,24 @@ Has</panel_attributes>
     <panel_attributes>Image
 --
 Description: String
-
-FileUrl: String</panel_attributes>
+FileUrl: String
+--
+get/set functions</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>980</x>
+      <x>1000</x>
       <y>260</y>
-      <w>170</w>
+      <w>150</w>
       <h>50</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1..1
 m2=0..1
 Has</panel_attributes>
-    <additional_attributes>10.0;20.0;150.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
@@ -315,26 +330,32 @@ Has</panel_attributes>
       <x>1140</x>
       <y>460</y>
       <w>140</w>
-      <h>60</h>
+      <h>130</h>
     </coordinates>
     <panel_attributes>Ad
 --
 Details: String
+Animal: Pet
+Author: Employee
+active: bolean
+--
+get/set functions
+boolean isActive()
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>980</x>
+      <x>1000</x>
       <y>350</y>
-      <w>180</w>
+      <w>160</w>
       <h>170</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=1..1
 m2=1..1
 Refers</panel_attributes>
-    <additional_attributes>160.0;140.0;110.0;140.0;110.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>140.0;140.0;90.0;140.0;90.0;10.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

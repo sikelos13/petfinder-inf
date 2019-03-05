@@ -80,10 +80,7 @@ public class Ad {
 	public void setAuthor(Employee author) {
 		this.author = author;
 	}
-	
-	/*private void createID() {
-		this.id = 0; //TODO create ID
-	}*/
+
 
 
 }

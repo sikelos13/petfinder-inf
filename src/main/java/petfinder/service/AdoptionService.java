@@ -16,45 +16,16 @@ public class AdoptionService {
 		this.em = em;
 	}
 
-	@SuppressWarnings("unchecked")
-	public List<Breed> findPetByBreed(String breed_name) {
 
-		List<Breed> results = null;
-		results = em
-				.createQuery(
-						"select b from Breed b where b.breed.BreedName like :name ")
-				.setParameter("name", breed_name).getResultList();
-
-		return results;
-	}
-/*
-	public Borrower createBorrower(Map<String, String> data) {
-		Borrower b = new Borrower();
-		try {
-			b.setBorrowerNo(Integer.valueOf(data
-					.get(BorrowerInfo.BORROWERNO_KEY)));
-			b.setFirstName(data.get(BorrowerInfo.FIRSTNAME_KEY));
-			b.setLastName(data.get(BorrowerInfo.LASTNAME_KEY));
-			b.setEmail(data.get(BorrowerInfo.EMAIL_KEY));
-			b.setTelephone(data.get(BorrowerInfo.TELEPHONE_KEY));
-			return b;
-		} catch (Exception e) {
-			return null;
-		}
-	}
-*/
-	public Ad findAdById(int id) {
-		return em.find(Ad.class, id);
+	public Adoption findAdById(int id) {
+		return em.find(Adoption.class, id);
 	}
 	
-	public Applicant findApplicantById(int id) {
-		return em.find(Applicant.class, id);
-	}
 
-	public boolean serverOnUpdateApplication(Breed b) {
+	public boolean serverOnUpdateAdoption(Adoption adoption) {
 
-		if (b != null) {
-			em.merge(b);
+		if (adoption != null) {
+			em.merge(adoption);
 			return true;
 		}
 
@@ -62,33 +33,61 @@ public class AdoptionService {
 	}
 
 	/**
-	 * Creates a new borrower instance in the database
-	 * @param b
-	 * @return
+	 * Update Adoption with data
+	 * @param adoption
+	 * @return status
 	 */
-	public boolean createApplication(Ad b) {
+	public boolean approveAdoption(Adoption adoption) {
 
-		if (b != null) {
-			em.persist(b);
+		if (adoption != null) {
+			adoption.getPet().setHasBeenAdopted(true);
+			adoption.getApplicant().PetAdoption(adoption.getPet());
+			em.persist(adoption);
 			return true;
 		}
 
 		return false;
 	}
 	
-	public boolean deleteApplication(Ad b) {
+	/**
+	 * Update Adoption with data.  Αpprove adoption
+	 * @param adoption, ad
+	 * @return status
+	 */
+	public boolean approveAdoption(Adoption adoption, Ad ad) {
 
-		if (b != null) {
-			em.remove(b);
+		if (adoption != null) {
+			ad.setActive(false);
+			adoption.getPet().setHasBeenAdopted(true);
+			adoption.getApplicant().PetAdoption(adoption.getPet());
+			em.persist(adoption);
 			return true;
 		}
 
 		return false;
 	}
+	
+	public boolean rejectAdoption(Adoption adoption) {
 
-	public Adoption createAdoption(String strin1, String string, String string2, String string4) {
-		
-		return null;
+		if (adoption != null) {
+			adoption.getPet().setHasBeenAdopted(false);
+			em.remove(adoption);
+			return true;
+		}
+
+		return false;
+	}
+	
+	public boolean rejectAdoption(Adoption adoption, Ad ad) {
+
+		if (adoption != null) {
+			adoption.getPet().setHasBeenAdopted(false);
+			ad.setActive(true);
+			em.remove(adoption);
+			return true;
+		}
+
+		return false;
 	}
 
 }
