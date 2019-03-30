@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import petfinder.contacts.TextMessage;
+
 
 @Entity
 @Table(name="employees")
@@ -13,8 +15,7 @@ public class Employee extends User {
 
 	@Id
     @Column(name="employeeID")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer employeeID;
+    @GeneratedValue(strategy = GenerationType.AUTO) Integer employeeID;
 	
 	private String jobTitle;
 	
@@ -34,6 +35,15 @@ public class Employee extends User {
 	
 	public String getJobTitle() {
 		return this.jobTitle;
+	}
+	
+	public boolean acceptAdoption(Adoption adpt) {
+		return adpt.approve();
+	}
+
+	public static void sendText(TextMessage textMessage) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 

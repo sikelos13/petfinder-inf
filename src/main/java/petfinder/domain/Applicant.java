@@ -26,16 +26,13 @@ public class Applicant extends User{
             cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	List<Pet> listOfPets = new Vector<Pet>();
 	
-	private float AvailableHoursPerDay;
+	private Double AvailableHoursPerDay;
 	private String Country, City, Region, Address;
-	private float HouseArea, PetBudgetPerWeek;
+	private Double HouseArea, PetBudgetPerWeek;
 	
-	public Applicant() {
-		
-	}
 	
-	public Applicant(String fullname, String telephone, Long applicantId, String email, String Country, String City, String Region, String Address,
-			float HouseArea, float PetBudgetPerWeek, float AvailableHoursPerDay) {
+	public Applicant(String fullname, String telephone, String email, String Country, String City, String Region, String Address,
+			Double HouseArea, Double PetBudgetPerWeek, Double AvailableHoursPerDay) {
 		super(fullname, telephone, email);
 
 		this.Country = Country;
@@ -68,7 +65,14 @@ public class Applicant extends User{
 		this.Country = Country;
 	}
 	
-	
+//	public String getTelephone() {
+//		return Country;
+//	}
+//	
+//	public void setTelephone(String Telephone) {
+//		this.Telephone = Telephone;
+//	}
+
 	public Integer getID() {
 		return applicantID;
 	}
@@ -102,29 +106,29 @@ public class Applicant extends User{
 		return this.Address;
 	}
 	
-	public void setHouseArea(float HouseArea) {
+	public void setHouseArea(Double HouseArea) {
 		this.HouseArea = HouseArea;
 	}
 	
-	public float getHouseArea() {
+	public Double getHouseArea() {
 		return this.HouseArea;
 	}
 	
 	
-	public void setAvailableHoursPerDay(float AvailableHoursPerDay) {
+	public void setAvailableHoursPerDay(Double AvailableHoursPerDay) {
 		this.AvailableHoursPerDay = AvailableHoursPerDay;
 	}
 	
-	public float getAvailableHoursPerDay() {
+	public Double getAvailableHoursPerDay() {
 		return this.AvailableHoursPerDay;
 	}
 	
 	
-	public void setPetBudgetPerWeek(float PetBudgetPerWeek) {
+	public void setPetBudgetPerWeek(Double PetBudgetPerWeek) {
 		this.PetBudgetPerWeek = PetBudgetPerWeek;
 	}
 	
-	public float getPetBudgetPerWeek() {
+	public Double getPetBudgetPerWeek() {
 		return this.PetBudgetPerWeek;
 	}
 }

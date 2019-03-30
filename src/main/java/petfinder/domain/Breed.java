@@ -25,14 +25,14 @@ public class Breed {
 	@Column(name="Animal", length=50, nullable = false)
     private String Animal;
     
-    private float MinLivingArea;
+    private Double MinLivingArea;
     
     private boolean NeedsGarden;
     
     
-    private float MinHoursPerDay;
+    private Double MinHoursPerDay;
     
-    private float MinPetBudgetPerWeek;
+    private Double MinPetBudgetPerWeek;
 
 	private List<Breed> NonCompBreed = new Vector<Breed>();
 
@@ -42,13 +42,12 @@ public class Breed {
     }
 
    
-    public Breed(String BreedName, String Animal, float MinLivingArea, boolean NeedsGarden,
-    		List<Breed> NonCompBreed, float MinHoursPerDay, float MinPetBudgetPerWeek) {
+    public Breed(String BreedName, String Animal, Double MinLivingArea, boolean NeedsGarden,
+    		Double MinHoursPerDay, Double MinPetBudgetPerWeek) {
         this.BreedName = BreedName;
         this.Animal = Animal;
         this.MinLivingArea = MinLivingArea;
         this.NeedsGarden = NeedsGarden;
-        this.NonCompBreed = NonCompBreed;
         this.MinPetBudgetPerWeek = MinPetBudgetPerWeek;
         this.MinHoursPerDay = MinHoursPerDay;
 
@@ -74,12 +73,12 @@ public class Breed {
     }
 
    
-    public void setMinLivingArea(float MinLivingArea) {
+    public void setMinLivingArea(Double MinLivingArea) {
         this.MinLivingArea = MinLivingArea;
     }
 
    
-    public float getMinLivingArea() {
+    public Double getMinLivingArea() {
         return MinLivingArea;
     }
 
@@ -92,25 +91,37 @@ public class Breed {
         return this.NeedsGarden;
     }
     
-    public void setMinPetBudgetPerWeek(float MinPetBudgetPerWeek) {
+    public void setMinPetBudgetPerWeek(Double MinPetBudgetPerWeek) {
         this.MinPetBudgetPerWeek = MinPetBudgetPerWeek;
     }
     
-    public Set<Breed> getBreed() {
+    /*public Set<Breed> getBreed() {
     	return new HashSet<Breed>(NonCompBreed);
+    }*/
+    
+    public void addNonCompBreed(Breed breed) {
+    	NonCompBreed.add(breed);
+    }
+    
+    public void removeNonCompBreed(Breed breed) {
+    	NonCompBreed.remove(breed);
+    }
+    
+    public List<Breed> getNonCompBreed() {
+    	return NonCompBreed;
     }
 
     
-    public float getMinPetBudgetPerWeek() {
+    public Double getMinPetBudgetPerWeek() {
         return this.MinPetBudgetPerWeek;
     }
     
-    public void setMinHoursPerDay(float MinHoursPerDay) {
+    public void setMinHoursPerDay(Double MinHoursPerDay) {
         this.MinHoursPerDay = MinHoursPerDay;
     }
 
   
-    public float getMinHoursPerDay() {
+    public Double getMinHoursPerDay() {
         return this.MinHoursPerDay;
     }
 

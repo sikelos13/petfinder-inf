@@ -28,10 +28,10 @@ public class NotificationService {
         	.getResultList();
         
         for (Adoption ad : allApplications) {
-            if (ad.isRejected() && ad.getApplicant().getTel() !=null &&
-            		ad.getApplicant().getId() != null) {
+            if (ad.isRejected() && ad.getApplicant().getTelephone() !=null &&
+            		ad.getApplicant().getID() != null) {
                 String message = composeMessage(ad.getPet(),
-                        -ad.reasonForRejection());
+                        ad.getReasonForRejection());
                 sentText(ad.getApplicant(),"Το αίτημα δεν εγκρίθηκε", message);
             }
         }
@@ -42,8 +42,8 @@ public class NotificationService {
     
 	
     private void sentText(Applicant applicant,String subject, String message) {
-    	TelephoneNumber phone  = applicant.getTel();
-        if (phone == null || !phone.isValid()) {
+    	String phone  = applicant.getTelephone();
+        if (phone == null || phone.length() <= 10) {
             return;
         }
         
@@ -54,7 +54,7 @@ public class NotificationService {
         Employee.sendText(textMessage);
     }
 
-    private String composeMessage(Pet pet, int i) {
+    private String composeMessage(Pet pet, String string) {
         String message = "Η αιτηση δεν εκγριθηκε απο τον διαχειριστή για την αγγελία ";
         message += pet.getID();
         return message;

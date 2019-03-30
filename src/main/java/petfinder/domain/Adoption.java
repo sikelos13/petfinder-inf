@@ -37,9 +37,12 @@ public class Adoption {
     @JoinColumn(name="petID")
     private Pet pet;
     
-    @OneToOne(fetch=FetchType.LAZY)
+
+	@OneToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="applicantID")
     private Applicant applicant;
+	
+	private boolean approved = false;
 	
     
     public Adoption() {
@@ -65,6 +68,10 @@ public class Adoption {
 		return Details;
 	}
 	
+	public void setPet(Pet pet) {
+		this.pet = pet;
+	}
+	
 	
 	public void setAdoptionDate(Date adDate) {
 		adoptionDate = adDate;
@@ -78,9 +85,8 @@ public class Adoption {
 	 /**
      * Θέτει τo applicant της υιοθεσίας.
      * @param applicant Ο applicant της υιοθεσίας
-     * @see Borrower#getLoans()
      */
-    protected void setApplicant(Applicant applicant) {
+    public void setApplicant(Applicant applicant) {
         if (this.applicant != null) {
             this.applicant.listOfPets.remove(pet);
         }
@@ -96,6 +102,21 @@ public class Adoption {
 
 	public Applicant getApplicant() {
 		return applicant;
+	}
+
+	public String getReasonForRejection() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	public boolean isRejected() {
+		return approved;
+	}
+	
+	public boolean approve() {
+		approved = true;
+		return approved;
 	}
 
 	

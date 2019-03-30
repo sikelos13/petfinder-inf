@@ -38,9 +38,7 @@ public class AnimalWelfare extends User {
 	/**
 	 * 
 	 */
-	public AnimalWelfare() {
-		
-	}
+
 
 	/**
 	 * @param FullName
