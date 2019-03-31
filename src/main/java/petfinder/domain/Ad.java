@@ -1,12 +1,16 @@
 package petfinder.domain;
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,10 +22,14 @@ public class Ad {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer adID;
 	
-	@Embedded
+	@OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="petID")
 	private Pet Animal;
 	
-	@Embedded
+	@ManyToMany(fetch=FetchType.LAZY, 
+            cascade= {CascadeType.PERSIST, CascadeType.MERGE}    
+            ) 
+    @JoinColumn(name="employeeID")
 	private Employee author;
 	
 	private boolean active;
