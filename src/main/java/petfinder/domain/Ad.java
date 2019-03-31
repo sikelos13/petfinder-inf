@@ -40,6 +40,10 @@ public class Ad {
 		this.active = status;
 	}
 	
+	public Ad() {
+		
+	}
+
 	public boolean isActive() {
 		return active;
 	}
