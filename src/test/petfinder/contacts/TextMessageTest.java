@@ -1,77 +1,62 @@
 package petfinder.contacts;
 
+import javax.persistence.EntityManager;
 
-import static org.junit.Assert.*;
-
-
-
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
-import petfinder.util.BasicEqualTester;
-
-//import gr.aueb.mscis.fuels.util.BasicEqualTester;
-
 public class TextMessageTest {
-
-    @Test
-    public void testEqualsObject() {
-        TextMessage text1 = new TextMessage();
-        TextMessage text2 = new TextMessage();
-        
-        assertFalse(text1.equals(null));
-        assertEquals(text1, text2);
-              
-        text1.setFrom("Stefanos");
-        assertFalse(text1.equals(text2));
-        text2.setFrom("Stefanos");
-        assertEquals(text1, text2);
-        
-        text1.setSubject("Aueb");
-        text2.setSubject("Aueb");
-        assertFalse(text1.equals(text2));
-    }
-    @Test
-    public void testEqualsAndHashCode() {
-        BasicEqualTester<TextMessage> equalsTester = new BasicEqualTester<TextMessage>();
-        TextMessage text = new TextMessage();
-        equalsTester.setObjectUnderTest(text);
-        
-        equalsTester.otherObjectIsNull();
-        
-        equalsTester.otherObjectIsOfDifferentType(new Object());
-        
-        TextMessage text2 = new TextMessage() ;
-        equalsTester.bothObjectsHaveNoState(text2);
-        
-        text.setFrom("Spuros");
-        equalsTester.otherObjectsHasNoState(text2);
-        
-        equalsTester.sameReferences(text);
-        
-        text2.setFrom("Spuros");
-        equalsTester.bothObjectsHaveSameState(text2);
-        
-        text2.setSubject("Test");
-        equalsTester.objectsHaveDifferentState(text2);
-        
-        text2.setSubject("NewTest");
-        equalsTester.objectsHaveDifferentState(text2);
-        
-        text2.setSubject("Test");
-        equalsTester.bothObjectsHaveSameState(text2);
-        
-        text.setSubject("TextTest");
-        equalsTester.objectsHaveDifferentState(text2);
-        
-        text2.setSubject("Subject");
-        equalsTester.objectsHaveDifferentState(text2);
-        
-        text2.setSubject("Test");
-        equalsTester.bothObjectsHaveSameState(text2);
-        
-        
-        
-    }
-
+	TextMessage message;
+	   private String from;
+	    private String to;
+	    private String subject;
+	    private String body;
+	protected EntityManager em;
+	
+	@Before
+	public void setup(){
+		// prepare database for each test
+		  	message = new TextMessage();
+		  	message.setFrom("Stefanos");
+		  	message.setTo("Spuros");
+		  	message.setSubject("Test subject");
+		  	message.setBody("Test body");
+		
+	}
+	
+	
+	   @Test
+	    public void addFrom() {
+		   	String testMessage = "Stefanos";
+		  	message = new TextMessage();
+	        message.setFrom(testMessage);
+	        Assert.assertEquals(testMessage,message.getFrom());
+	    }
+	   
+	   @Test
+	    public void addTo() {
+		 	String testMessage = "Spuros";
+		  	message = new TextMessage();
+	        message.setTo(testMessage);
+	        Assert.assertEquals(testMessage,message.getTo());
+	    }
+	   
+	   @Test
+	    public void addSubject() {
+		   	String testMessage = "Test subject";
+		  	message = new TextMessage();
+	        message.setSubject(testMessage);
+	        Assert.assertEquals(testMessage,message.getSubject());
+	    }
+	   
+	   @Test
+	    public void addBody() {
+			String testMessage = "Test body";
+		  	message = new TextMessage();
+	        message.setBody(testMessage);
+	        Assert.assertEquals(testMessage,message.getBody());
+	    }
+	   
 
 }
