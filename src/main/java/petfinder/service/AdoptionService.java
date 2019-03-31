@@ -3,6 +3,8 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.EntityTransaction;
 
 import petfinder.domain.*;
 
@@ -14,6 +16,40 @@ public class AdoptionService {
 
 	public AdoptionService(EntityManager em) {
 		this.em = em;
+	}
+	
+	public Adoption save(Adoption adoption) {
+
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		if (adoption.getId() != null) {
+			// beware, always use the result of merge
+			adoption = em.merge(adoption);
+		} else {
+			em.persist(adoption);
+		}
+		tx.commit();
+		return adoption;
+
+	}
+	
+	public boolean deleteAdoption(int adoptionID) {
+		
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+
+		try {
+			Adoption adoption = em.getReference(Adoption.class, adoptionID);
+			em.remove(adoption);
+		} catch (EntityNotFoundException e) {
+			tx.rollback();
+			return false;
+		}
+
+		tx.commit();
+
+		return true;
+
 	}
 
 
@@ -88,6 +124,32 @@ public class AdoptionService {
 		}
 
 		return false;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<Adoption> findAllAdoptions() {
+		
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		List<Adoption> results = null;
+
+		results = em.createQuery("select a from Adoption a").getResultList();
+		tx.commit();
+		return results;
+
+	}
+
+
+	@SuppressWarnings("unchecked")
+	public List<Adoption> findAdByStatus(boolean approved) {
+		// TODO Alter query
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		List<Adoption> results = null;
+
+		results = em.createQuery("select a from Adoption a").getResultList();
+		tx.commit();
+		return results;
 	}
 
 }
