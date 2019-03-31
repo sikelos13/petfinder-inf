@@ -27,10 +27,10 @@ public class JPAQueriesTest {
 	 @SuppressWarnings("unchecked")
 	    @Test
 	    public void simpleQuery() {
-	        int EXPECTED_FUEL_NUMBER = 3;
+	        int EXPECTED_BREED_NUMBER = 3;
 	        EntityManager em = JPAUtil.getCurrentEntityManager();
 	        Query query = em.createQuery("select breed from Breed breed");
 	        List<Breed> results = query.getResultList();      
-	        Assert.assertEquals(EXPECTED_FUEL_NUMBER, results.size());	        
+	        Assert.assertEquals(EXPECTED_BREED_NUMBER, results.size());	        
 	    }
 }

@@ -8,7 +8,7 @@ import org.junit.Test;
 import petfinder.domain.*;
 
 public class AdServiceTest extends PetfinderServiceTest {
-
+	
 	@Test
 	public void testFindAllAds() {
 		
