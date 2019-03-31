@@ -71,6 +71,8 @@ public class PetfinderUri {
 	
 	public static final String adoptionSearch = ADOPTION + "/search";
 	
+	public static final String adSearch = AD + "/search";
+	
 	
 	
 	public static String petSearch(String breedName) {
@@ -79,6 +81,10 @@ public class PetfinderUri {
 	
 	public static String adoptionSearch(boolean approved) {
 		return adoptionSearch + "?approved=" + approved;
+	}
+	
+	public static String adSearch(String breedName) {
+		return adSearch + "?breedName=" + breedName;
 	}
 
 
