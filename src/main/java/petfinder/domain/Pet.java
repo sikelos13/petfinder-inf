@@ -6,6 +6,7 @@ import java.util.Vector;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import petfinder.resource.AdoptionInfo;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -40,6 +44,10 @@ public class Pet {
     @JoinColumn(name="breedID")
 	private Breed breed;
 
+	public Pet() {
+		ImportDate = new Date(); //current date
+	}
+
 	public Pet(Breed breed, String healthStatus, Double age, Double weight, boolean hasBeenAdopted) {
 		
 		this.HealthStatus = healthStatus;
@@ -51,6 +59,8 @@ public class Pet {
 		this.setBreed(breed);
 	 
 	}
+
+	
 
 	public void addImage(String url, String description) {
 		images.add(new Image(url, description));

@@ -39,17 +39,17 @@ public class AdoptionResource extends AbstractResource{
 		AdoptionService adoptionService = new AdoptionService(em);
 		List<Adoption> adoptions = adoptionService.findAllAdoptions();
 
-		List<AdoptionInfo> bookInfo = AdoptionInfo.wrap(adoptions);
+		List<AdoptionInfo> adoptionInfo = AdoptionInfo.wrap(adoptions);
 
 		em.close();
-		return bookInfo;
+		return adoptionInfo;
 
 	}
 
 	@GET
 	@Path("{adoptionID:[0-9]*}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public AdoptionInfo getBookDetails(@PathParam("adoptionID") int adoptionID) {
+	public AdoptionInfo getAdoptionDetails(@PathParam("adoptionID") int adoptionID) {
 
 		EntityManager em = getEntityManager();
 
@@ -99,9 +99,9 @@ public class AdoptionResource extends AbstractResource{
 	}
 
 	/**
-	 * Update a specific book
+	 * Update a specific adoption
 	 * 
-	 * @param bookInfo
+	 * @param AdoptionInfo
 	 *            A full representation of the adoption, including its id should be
 	 *            submitted
 	 * @return
