@@ -8,10 +8,7 @@ import org.junit.Test;
 
 public class TextMessageTest {
 	TextMessage message;
-	   private String from;
-	    private String to;
-	    private String subject;
-	    private String body;
+
 	protected EntityManager em;
 	
 	@Before
