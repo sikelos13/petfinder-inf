@@ -14,7 +14,7 @@ Umlet and Wikitext
 
 Diagrams and system preferences were made using Umlet and wikitext 
 
-##License
+License
 ----------
 
 Copyright © 2019 .Released under AUEB License.
